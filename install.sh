@@ -22,7 +22,7 @@ verif_deps() {
     which curl &>/dev/null && success "curl is installed" || error "curl is needed for the installation of .vimrc file !" "critical"
     which git &>/dev/null && success "git is installed" || error "git is needed for the installation" "critical"
     which python &>/dev/null && success "python is installed" || error "Python is recommended for some modules"
-    vi --version | egrep '\+python|\+python3' &> /dev/null && success "VIM is compiled with python" || error "VIM is not compiled with pytho ! Some modules. Some modules will not work !"
+    vi --version | egrep '\+python' &> /dev/null && success "VIM is compiled with python" || error "VIM is not compiled with pytho ! Some modules. Some modules will not work !"
     which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
     which cmake &>/dev/null && success "cmake is installed" || error "cmake is recommended for some modules"
     which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for some modules"

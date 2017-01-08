@@ -1,6 +1,7 @@
-""""""""""""
-" By GigiX "
-""""""""""""
+"""""""""""""
+" vim-GigiX "
+"""""""""""""
+" Author : Ghislain LE MEUR
 " https://github.com/gigi206/vim-gigix
 " Git must be installed pour install or updated modulesA
 " exuberant-ctags (+ cmake + g++ + python-dev => for compile) => if you wan to use youcompleteme (vim with +python os needed)
@@ -13,7 +14,7 @@ if !empty($VimPlugin)
 endif
 
 if !exists('g:MyPluginPath') || !isdirectory(g:MyPluginPath)
-    let g:MyPluginPath = fnamemodify(resolve(expand($MYVIMRC)), ":h") . '/.vim/bundle'
+    let g:MyPluginPath = fnamemodify(resolve(expand($MYVIMRC)), ":p:h") . '/.vim/bundle'
 
     if !isdirectory(g:MyPluginPath)
         let g:MyPluginPath = fnamemodify(expand('~/.vim/bundle'), ":p")
@@ -62,7 +63,7 @@ NeoBundleLazy 'scrooloose/nerdcommenter', {'autoload' : {'mappings' : ['<Leader>
 NeoBundleLazy "scrooloose/syntastic", {'autoload' : {'filetypes': ['python', 'ruby', 'perl', 'php', 'sh', 'vim', 'c', 'cpp', 'css', 'dockerfile', 'html', 'xhtml', 'javascript', 'json', 'markdown','yaml', 'xml', 'zsh']}}
 NeoBundleLazy 'scrooloose/nerdtree', {'autoload' : {'commands' : ['NERDTreeToggle','NERDTreeFind','NERDTree']}}
 NeoBundleLazy 'tpope/vim-fugitive', {'external_commands' : ['git'], 'disabled' : (!executable('git')), 'autoload' : {'commands' : ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff', 'Gblame', 'Git', 'Ggrep']}, 'depends' : 'mhinz/vim-signify'}
-NeoBundleLazy 'mhinz/vim-signify'
+NeoBundleLazy 'mhinz/vim-signify', {'autoload' : {'commands' : ['SignifyToggle']}}
 NeoBundleLazy 'ctrlpvim/ctrlp.vim', {'autoload' : {'mappings' : ['<C-p>']}}
 NeoBundleLazy 'luochen1990/rainbow', {'autoload' : {'filetypes': ['xml', 'xhtml', 'html', 'vim', 'php']}}
 NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload' : {'filetypes': ['html']}}
@@ -150,9 +151,8 @@ autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1
 " Workaround for vim-airline with lazyredraw
 autocmd VimEnter * redrawstatus!
 
-
 " Key mapping
-nmap <silent>  <Leader>/ :exec ":nohlsearch" ? "nohlsearch" : "set invhlsearch"<CR>
+nmap <silent> <Leader>/ :exec ":nohlsearch" ? "nohlsearch" : "set invhlsearch"<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 nnoremap <C-d> :bd!<CR>
@@ -245,7 +245,6 @@ endif
 
 " vim-easymotion {
     if isdirectory(g:MyPluginPath . "/vim-easymotion")
-
         nmap <Leader><Leader>w <Plug>(easymotion-bd-w)
     endif
 " }
@@ -305,7 +304,7 @@ endif
 " }
 
 " vim-easy-align {
-    if isdirectory(g:MyPluginPath . "/tabular")
+    if isdirectory(g:MyPluginPath . "/vim-easy-align")
         nmap <Leader>a <Plug>(EasyAlign)
         xmap <Leader>a <Plug>(EasyAlign)
         nmap ga <Plug>(EasyAlign)
@@ -315,7 +314,8 @@ endif
 
 " Gundo {
     if isdirectory(g:MyPluginPath . "/gundo.vim")
-        nnoremap <F5> :GundoToggle<CR>
+        "nnoremap <F5> :GundoToggle<CR>
+        nnoremap <Leader>u :GundoToggle<CR>
     endif
 " }
 
@@ -339,7 +339,6 @@ endif
             nnoremap <silent> <leader>ge :Gedit<CR>
             " Mnemonic _i_nteractive
             nnoremap <silent> <leader>gi :Git add -p %<CR>
-            nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
         function! s:bundle.hooks.on_post_source(bundle)
             doautoall fugitive BufNewFile
@@ -348,7 +347,12 @@ endif
     endif
 " }
 
-" indent_guides {
+" vim-signify {
+    if isdirectory(g:MyPluginPath . "/vim-signify")
+            nnoremap <silent> <leader>gg :SignifyToggle<CR>
+    endif
+" }
+" vim-indent_guides {
     if isdirectory(g:MyPluginPath . "/vim-indent-guides")
         let g:indent_guides_start_level = 2
         let g:indent_guides_guide_size = 1
