@@ -1,5 +1,52 @@
 vim-gigix
 =========
+<!--
+https://ecotrust-canada.github.io/markdown-toc/
+-->
+- [Presentation](#presentation)
+- [Installation](#installation)
+- [Learn VIM](#learn-vim)
+- [Key mapping](#key-mapping)
+  * [Original VIM key mapping](#original-vim-key-mapping)
+    + [Builtin key mapping without plugin or remapping](#builtin-key-mapping-without-plugin-or-remapping)
+    + [Play with registers](#play-with-registers)
+    + [Play with marks](#play-with-marks)
+    + [Play with split](#play-with-split)
+  * [Plugin key mapping](#plugin-key-mapping)
+- [Modules](#modules)
+  * [vim-cursor](#vim-cursor)
+  * [vim-colors-solarized](#vim-colors-solarized)
+  * [vim-airline](#vim-airline)
+  * [vim-airline-themes](#vim-airline-themes)
+  * [vim-indent-guides](#vim-indent-guides)
+  * [auto-pairs](#auto-pairs)
+  * [vim-multiple-cursors](#vim-multiple-cursors)
+  * [matchit.zip](#matchitzip)
+  * [vim-easy-align](#vim-easy-align)
+  * [vim-easymotion](#vim-easymotion)
+  * [vim-surround](#vim-surround)
+  * [vim-repeat](#vim-repeat)
+  * [wildfire.vim](#wildfirevim)
+  * [nerdcommenter](#nerdcommenter)
+  * [syntastic](#syntastic)
+  * [nerdtree](#nerdtree)
+  * [vim-fugitive](#vim-fugitive)
+  * [vim-signify](#vim-signify)
+  * [ctrlp.vim](#ctrlpvim)
+  * [rainbow](#rainbow)
+  * [HTML-AutoCloseTag](#html-autoclosetag)
+  * [gundo.vim](#gundovim)
+  * [tagbar](#tagbar)
+  * [YouCompleteMe](#youcompleteme)
+    + [Requirements](#requirements)
+    + [Compilation](#compilation)
+  * [vim-snippets](#vim-snippets)
+  * [ultisnips](#ultisnips)
+- [Troubleshooting](#troubleshooting)
+
+
+Presentation
+------------
 Plugins and customization for VIM.
 
 Inspired by [spf13-vim](http://vim.spf13.com/).
