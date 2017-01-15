@@ -3,6 +3,7 @@ vim-gigix
 <!--
 https://ecotrust-canada.github.io/markdown-toc/
 -->
+
 - [Presentation](#presentation)
 - [Installation](#installation)
 - [Learn VIM](#learn-vim)
@@ -341,13 +342,13 @@ Modules
 [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) is a vim theme.
 ![solarized dark](https://github.com/altercation/solarized/raw/master/img/solarized-vim.png)
 
+If you use vim with **Putty**, you should install this [reg file](Putty/putty.reg) for compatibility colors.
+
 ### vim-airline
 [vim-airline](https://github.com/vim-airline/vim-airline) is a color status/tabline bar.
 ![vim-airline](https://github.com/vim-airline/vim-airline/wiki/screenshots/demo.gif)
 
-If you use vim with Putty, you must install compatible fonts like ~.vim/bundle/fonts/DejaVuSansMono/*ttf and use it in Window/Apperance of Putty settings :
- * Font Settings : font => 'DejaVu Sans Mono for powerline'
- * font quality : ClearType
+If you use vim with **Putty**, you must install compatible fonts like [DejaVuSansMono](~.vim/bundle/fonts/DejaVuSansMono/) and apply this [reg file](Putty/putty.reg).
 
 ### vim-airline-themes
 [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) : themes for vim-airline.
