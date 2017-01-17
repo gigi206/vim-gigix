@@ -56,7 +56,7 @@ NeoBundleLazy 'vim-airline/vim-airline-themes'
 NeoBundleLazy 'matchit.zip', {'autoload' : {'mappings' : ['%']}}
 NeoBundleLazy 'junegunn/vim-easy-align', {'autoload' : {'mappings' : ['<Plug>(EasyAlign)']}}
 NeoBundleLazy 'easymotion/vim-easymotion', {'autoload' : {'mappings' : ['<Plug>(easymotion-bd-w)','<Leader><Leader>s']}}
-NeoBundleLazy 'tpope/vim-surround', {'autoload' : {'mappings' : ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>YSurround', '<Plug>VSurround', '<Plug>Isurround']}}
+NeoBundleLazy 'tpope/vim-surround', {'autoload' : {'mappings' : ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround', '<Plug>Ysurround', '<Plug>YSurround', '<Plug>VSurround', '<Plug>VgSurround', '<Plug>Isurround', 'ISurround']}}
 NeoBundleLazy 'tpope/vim-repeat', {'autoload' : {'mappings' : ['.']}}
 NeoBundleLazy 'gcmt/wildfire.vim', {'autoload' : {'mappings' : ['<CR>']}}
 NeoBundleLazy 'scrooloose/nerdcommenter', {'autoload' : {'mappings' : ['<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs', '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu']}}
@@ -72,7 +72,6 @@ NeoBundleLazy 'majutsushi/tagbar', {'external_commands' : ['ctags-exuberant'], '
 NeoBundleLazy 'SirVer/ultisnips'
 NeoBundleLazy 'honza/vim-snippets'
 NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python install.py'}, 'external_commands' : ['ctags-exuberant'], 'disabled' : (!has('python')), 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
-"NeoBundleLazy 'godlygeek/tabular', {'autoload' : {'commands' : ['Tabularize']}}
 
 " You can specify revision/branch/tag.
 "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -96,12 +95,14 @@ NeoBundleCheck
 "NeoBundleDisable
 
 set nobackup
-set history=1000     " memoire de l'historique
-set undolevels=1000  " nombre de retour arriere possible
-"set nohlsearch       " desactive le surlignement lors des recherches
-set visualbell       " desactive le <BIP>
-set t_vb=            " desactive le clignotement de visualbell
-set noerrorbells     " desactive le <BIP>
+set history=1000     " Store lasts history
+"set undofile                " Persistent undo
+set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+set undolevels=1000         " Maximum number of changes that can be undone
+"set nohlsearch       " Disable highlight for search
+set visualbell       " Disable terminal blink
+set t_vb=            " Disable terminal blink
+set noerrorbells     " Disable terminal <BIP>
 set lazyredraw       " Help cursorline refresh
 set ttyfast          " Help for performance
 set encoding=utf-8
@@ -141,18 +142,12 @@ set showmode                    " Display the current mode
 set shell=/bin/sh
 
 scriptencoding utf-8
-setglobal fileencoding=utf-8
+"setglobal fileencoding=utf-8
 syntax on
 
-" Instead of reverting the cursor to the last position in the buffer, we
-" set it to the first line when editing a git commit message
-autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-" Workaround for vim-airline with lazyredraw
-autocmd VimEnter * redrawstatus!
-
 " Key mapping
-nmap <silent> <Leader>/ :exec ":nohlsearch" ? "nohlsearch" : "set invhlsearch"<CR>
+"nmap <silent> <Leader>/ :exec ":nohlsearch" ? "nohlsearch" : "set invhlsearch"<CR>
+nmap <silent> <Leader>/ :set invhlsearch<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 nnoremap <C-d> :bd!<CR>
@@ -165,10 +160,9 @@ if has('gui_running')
     " Gui here
 else
     if &term == 'xterm' || &term == 'screen'
-        set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+        set t_Co=256
     endif
 endif
-
 
 " vim-colors-solarized {
     if filereadable(g:MyPluginPath . "/vim-colors-solarized/colors/solarized.vim")
@@ -176,26 +170,33 @@ endif
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
-        set background=dark         " Assume a dark background
+        "set background=dark         " Assume a dark background
+        "set background=light        " Assume a light background
         colorscheme solarized
 
         "set cursorcolumn                " Highlight current column
         set cursorline                  " Highlight current line
-        "highlight clear SignColumn      " SignColumn should match background
         "highlight clear LineNr          " Current line number row will have same background color in relative mode
         "highlight clear CursorLineNr    " Remove highlight color from current line number
+        "if &background == 'dark'
+        "    highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=Yellow
+        "endif
     endif
 " }
 
 " vim-airline {
     if isdirectory(g:MyPluginPath . "/vim-airline")
-        if !exists('g:airline_theme')
-            let g:airline_theme = 'luna'
-        endif
+        " Workaround for vim-airline with lazyredraw
+        autocmd VimEnter * redrawstatus!
+
+        "if !exists('g:airline_theme')
+            "let g:airline_theme = 'lucius'
+            "let g:airline_theme = 'luna'
+        "endif
         if !exists('g:airline_powerline_fonts')
             " Use the default set of separators with a few customizations
-            let g:airline_left_sep='›'  " Slightly fancier than '>'
-            let g:airline_right_sep='‹' " Slightly fancier than '<'
+            let g:airline_left_sep=''  " Slightly fancier than '>'
+            let g:airline_right_sep='' " Slightly fancier than '<'
         endif
 
     if has('statusline')
@@ -205,32 +206,9 @@ endif
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#tabline#enabled = 1
 
-        "let g:airline_left_sep = ''
-        "let g:airline_left_alt_sep = ''
-        "let g:airline_right_sep = ''
-        "let g:airline_right_alt_sep = ''
-
         if !exists('g:airline_symbols')
             let g:airline_symbols = {}
         endif
-          " unicode symbols
-        "let g:airline_left_sep = '»'
-        "let g:airline_left_sep = '▶'
-        "let g:airline_right_sep = '«'
-        "let g:airline_right_sep = '◀'
-        "let g:airline_symbols.crypt = ''
-        "let g:airline_symbols.linenr = '␊'
-        "let g:airline_symbols.linenr = '␤'
-        "let g:airline_symbols.linenr = '¶'
-        "let g:airline_symbols.maxlinenr = '☰'
-        "let g:airline_symbols.maxlinenr = ''
-        "let g:airline_symbols.branch = '⎇'
-        "let g:airline_symbols.paste = 'ρ'
-        "let g:airline_symbols.paste = 'Þ'
-        "let g:airline_symbols.paste = '∥'
-        "let g:airline_symbols.spell = 'Ꞩ'
-        "let g:airline_symbols.notexists = '∄'
-        "let g:airline_symbols.whitespace = 'Ξ'
 
         " powerline symbols
         let g:airline_left_sep = ''
@@ -282,27 +260,6 @@ endif
     endif
 " }
 
-" Tabularize {
-"    if isdirectory(g:MyPluginPath . "/tabular")
-"        nmap <silent> <Leader>a& :Tabularize /&<CR>
-"        vmap <silent> <Leader>a& :Tabularize /&<CR>
-"        nmap <silent> <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-"        vmap <silent> <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-"        nmap <silent> <Leader>a=> :Tabularize /=><CR>
-"        vmap <silent> <Leader>a=> :Tabularize /=><CR>
-"        nmap <silent> <Leader>a: :Tabularize /:<CR>
-"        vmap <silent> <Leader>a: :Tabularize /:<CR>
-"        nmap <silent> <Leader>a:: :Tabularize /:\zs<CR>
-"        vmap <silent> <Leader>a:: :Tabularize /:\zs<CR>
-"        nmap <silent> <Leader>a, :Tabularize /,<CR>
-"        vmap <silent> <Leader>a, :Tabularize /,<CR>
-"        nmap <silent> <Leader>a,, :Tabularize /,\zs<CR>
-"        vmap <silent> <Leader>a,, :Tabularize /,\zs<CR>
-"        nmap <silent> <Leader>a<Bar> :Tabularize /<Bar><CR>
-"        vmap <silent> <Leader>a<Bar> :Tabularize /<Bar><CR>
-"    endif
-" }
-
 " vim-easy-align {
     if isdirectory(g:MyPluginPath . "/vim-easy-align")
         nmap <Leader>a <Plug>(EasyAlign)
@@ -314,7 +271,6 @@ endif
 
 " Gundo {
     if isdirectory(g:MyPluginPath . "/gundo.vim")
-        "nnoremap <F5> :GundoToggle<CR>
         nnoremap <Leader>u :GundoToggle<CR>
     endif
 " }
@@ -322,23 +278,24 @@ endif
 " Rainbow {
     if isdirectory(g:MyPluginPath . "/rainbow")
         let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+        nnoremap <Leader><Leader>r :RainbowToggle<CR>
     endif
 " }
 
 " vim-fugitive {
     if isdirectory(g:MyPluginPath . "/vim-fugitive")
         let s:bundle = neobundle#get('vim-fugitive')
-            nnoremap <silent> <leader>gs :Gstatus<CR>
-            nnoremap <silent> <leader>gd :Gdiff<CR>
-            nnoremap <silent> <leader>gc :Gcommit<CR>
-            nnoremap <silent> <leader>gb :Gblame<CR>
-            nnoremap <silent> <leader>gl :Glog<CR>
-            nnoremap <silent> <leader>gp :Git push<CR>
-            nnoremap <silent> <leader>gr :Gread<CR>
-            nnoremap <silent> <leader>gw :Gwrite<CR>
-            nnoremap <silent> <leader>ge :Gedit<CR>
-            " Mnemonic _i_nteractive
-            nnoremap <silent> <leader>gi :Git add -p %<CR>
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gr :Gread<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
+        nnoremap <silent> <leader>ge :Gedit<CR>
+        " Mnemonic _i_nteractive
+        nnoremap <silent> <leader>gi :Git add -p %<CR>
 
         function! s:bundle.hooks.on_post_source(bundle)
             doautoall fugitive BufNewFile
@@ -349,7 +306,20 @@ endif
 
 " vim-signify {
     if isdirectory(g:MyPluginPath . "/vim-signify")
-            nnoremap <silent> <leader>gg :SignifyToggle<CR>
+       "highlight SignColumn ctermfg=Black ctermbg=Black guifg=Black guibg=Black
+       "highlight SignColumn ctermfg=239 ctermbg=235 guifg=239 guibg=235
+       "highlight SignifySignAdd    cterm=bold ctermbg=22 ctermfg=22 guifg=22 guibg=255
+       "highlight SignifySignDelete cterm=bold ctermbg=52 ctermfg=255 guifg=52 guibg=255
+       "highlight SignifySignChange cterm=bold ctermbg=186 ctermfg=0 guifg=186 guibg=0
+       let g:signify_update_on_bufenter = 1
+       let g:signify_update_on_focusgained = 1
+       let g:signify_sign_show_text = 1
+       let g:signify_line_highlight = 0
+       nnoremap <silent> <Leader>gg :SignifyToggle<CR>
+       nnoremap <silent> <Leader>gh :SignifyToggleHighlight<CR>
+       " hunk jumping
+       nmap <leader>gj <plug>(signify-next-hunk)
+       nmap <leader>gk <plug>(signify-prev-hunk)
     endif
 " }
 " vim-indent_guides {
@@ -446,6 +416,67 @@ endif
         let g:syntastic_check_on_wq = 1
     endif
 " }
+
+" HTML-AutoCloseTag {
+    if isdirectory(g:MyPluginPath . "/HTML-AutoCloseTag")
+        nmap <Leader>ac <Plug>ToggleAutoCloseMappings
+    endif
+    "
+" }
+" auto-pairs{
+    if isdirectory(g:MyPluginPath . "/auto-pairs")
+        let g:AutoPairsShortcutToggle = '<Leader>ap'
+    endif
+" }
+
+" Functions
+function! ToggleBackground()
+    if exists('g:colors_name') && g:colors_name == 'solarized'
+        if !exists('g:init_Background')
+            let g:init_Background=1
+            "set bg=light " light is the default bg
+            "set bg=dark
+
+            highlight clear SignColumn      " SignColumn should match background
+
+            if &background == 'light'
+                let g:airline_theme = 'lucius'
+                highlight link EasyMotionTarget ErrorMsg
+                highlight link EasyMotionTarget2First Search
+                highlight link EasyMotionTarget2Second Search
+                "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
+                "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
+                "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
+            elseif &background == 'dark'
+                let g:airline_theme = 'luna'
+                highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
+            endif
+            return
+        endif
+
+       if &background == 'light'
+            set bg=dark
+            highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
+
+            if exists('g:airline_theme')
+                AirlineTheme luna
+            endif
+        elseif &background == 'dark'
+            set bg=light
+            highlight link EasyMotionTarget ErrorMsg
+            highlight link EasyMotionTarget2First Search
+            highlight link EasyMotionTarget2Second Search
+
+            if exists('g:airline_theme')
+                AirlineTheme lucius
+            endif
+        endif
+    endif
+endfunction
+" End functions
+
+call ToggleBackground()
+nnoremap <F5> :call ToggleBackground()<CR>
 
 " Use local vimrc if available {
     if filereadable(expand("~/.vimrc.local"))
