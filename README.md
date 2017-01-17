@@ -72,37 +72,33 @@ Viewer for md file => http://dillinger.io/
 -->
 
 ### Original VIM key mapping
+
 #### Builtin key mapping without plugin or remapping
+
+##### Yank
 
 | Keystrokes                                                       |   Mode  | Description                                                                           |
 |------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
-| `p` or `P`                                                       |    N    | Paste the register                                                                    |
-| `R`                                                              |    N    | Change normal to replace mode                                                         |
-| `v`                                                              |    N    | Change normal to visual mode                                                          |
-| `V`                                                              |    N    | Change normal to visual line mode                                                     |
-| `<C-v>`                                                          |    N    | Change normal to visual block                                                         |
-| `gh`                                                             |    N    | Change to selected mode                                                               |
-| `o`                                                              |    N    | Add line below                                                                        |
-| `O`                                                              |    N    | Add line above                                                                        |
-| `a`                                                              |    N    | Change to insert mode after the cursor                                                |
-| `A`                                                              |    N    | Move the cursor after the end of line and change in insert mode                       |
-| `^` or `|` or `_`                                                |    N    | Move cursor at the line begin                                                         |
-| `$`                                                              |    N    | Move the cursor at the end of line                                                    |
-| `i`                                                              |    N    | Change normal to insert mode                                                          |
-| `I`                                                              |    N    | Add the cursor at the start of the line and change normal to insert mode              |
-| `J`                                                              |    N    | Join lines                                                                            |
-| `W`                                                              |    N    | Jump to the next word (separate by a space)                                           |
-| `w` or `e`                                                       |    N    | Jump after the next separator (` `, `.`, `/`, `:`, `-`, `|`, ...)                     |
-| `b`                                                              |    N    | Inverse of `w`                                                                        |
-| `B`                                                              |    N    | Inverse of `W`                                                                        |
-| `f<letter>` or `F<letter>`                                       |    N    | Goto the next `<letter>`                                                              |
-| `(` or `)`                                                       |    N    | Sentence backword or forward                                                          |
-| `{` or `}`                                                       |    N    | Paragraph backward or forward                                                         |
-| `[[` or `]]`                                                     |    N    | Go to the previous `{` or next `}`                                                    |
-| `x` or `Del`                                                     |    N    | Del char                                                                              |
-| `r`                                                              |    N    | Replace single character at cursor                                                    |
-| `D`                                                              |    N    | Erase from cursor to end end of line                                                  |
-| `C`                                                              |    N    | Same as D but change in insert mode                                                   |
+| `yi(` or `yi)` or `ya(` or `ya)` or `yib` or `yab`               |    N    | Copy `( <text> )` block                                                               |
+| `yi[` or `yi]` or `ya[` or `ya]`                                 |    N    | Copy `[ <text> ]` block                                                               |
+| `yi{` or `yi}` or `ya{` or `ya}` or `yiB` or `yaB`               |    N    | Copy `{ <text> }` block                                                               |
+| `yi<` or `yi>` or `ya<` or `ya>`                                 |    N    | Copy ` < <text> >` block                                                              |
+| `yi"` or `ya"`                                                   |    N    | Copy `" <text> "` block                                                               |
+| `yi'` or `ya'`                                                   |    N    | Copy `' <text> '` block                                                               |
+| ``yi` `` or ``ya` ``                                             |    N    | Copy `` ` <text> ` `` block                                                           |
+| `yit` or `yat`                                                   |    N    | Copy `<tag> <text> </tag>` block                                                      |
+| `yy` or `Y`                                                      |    N    | Copy line to the register                                                             |
+| `yf<letter>`                                                     |    N    | Copy from cursor to `<letter>`                                                        |
+| `yw` or `yiw` or `yaw` or `yW` or `yaW` or `yiW` or `ye` or `yE` |    N    | Copy from cursor to the end word                                                      |
+| `yb` or `yB`                                                     |    N    | Copy from cursor to the begin word                                                    |
+| `yap` or `yip`                                                   |    N    | Copy the current block                                                                |
+| `y` or `Y`                                                       |    V    | Copy highlight text                                                                   |
+
+
+##### Cut
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
 | `cgn`                                                            |    N    | Cut the previous search                                                               |
 | `cf<letter>`                                                     |    N    | Cut from cursor to `<letter>`                                                         |
 | `cw` or `ciw` or `caw` or `cW` or `caW` or `ciW` or `ce` or `cE` |    N    | Cut from cursor to the end word                                                       |
@@ -116,6 +112,14 @@ Viewer for md file => http://dillinger.io/
 | `ci'` or `ca'`                                                   |    N    | Cut `' <text> '` block                                                                |
 | ``ci` `` or ``ca` ``                                             |    N    | Cut `` ` <text> ` `` block                                                            |
 | `cit` or `cat`                                                   |    N    | Cut `<tag> <text> </tag>` block                                                       |
+| `c` or `s` or `C` or `S`                                         |    V    | Cut the slected text in buffer et go to insert mode                                   |
+| `c`                                                              |    V    | Cut the highlight text                                                                |
+
+
+##### Delete
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
 | `df<letter>`                                                     |    N    | Delete from cursor to `<letter>`                                                      |
 | `dw` or `diw` or `daw` or `dW` or `daW` or `diW` or `de` or `dE` |    N    | Delete from cursor to the end word                                                    |
 | `db` or `dB`                                                     |    N    | Delete from cursor to the begin word                                                  |
@@ -130,37 +134,18 @@ Viewer for md file => http://dillinger.io/
 | `dit` or `dat`                                                   |    N    | Delete `<tag> <text> </tag>` block                                                    |
 | `dd`                                                             |    N    | Delete the current line                                                               |
 | `S`                                                              |    N    | Delete the current line and change to insert mode                                     |
-| `yf<letter>`                                                     |    N    | Delete from cursor to `<letter>`                                                      |
-| `yw` or `yiw` or `yaw` or `yW` or `yaW` or `yiW` or `ye` or `yE` |    N    | Delete from cursor to the end word                                                    |
-| `yb` or `yB`                                                     |    N    | Delete from cursor to the begin word                                                  |
-| `yap` or `yip`                                                   |    N    | Delete the current block                                                              |
-| `yi(` or `yi)` or `ya(` or `ya)` or `yib` or `yab`               |    N    | Copy `( <text> )` block                                                               |
-| `yi[` or `yi]` or `ya[` or `ya]`                                 |    N    | Copy `[ <text> ]` block                                                               |
-| `yi{` or `yi}` or `ya{` or `ya}` or `yiB` or `yaB`               |    N    | Copy `{ <text> }` block                                                               |
-| `yi<` or `yi>` or `ya<` or `ya>`                                 |    N    | Copy ` < <text> >` block                                                              |
-| `yi"` or `ya"`                                                   |    N    | Copy `" <text> "` block                                                               |
-| `yi'` or `ya'`                                                   |    N    | Copy `' <text> '` block                                                               |
-| ``yi` `` or ``ya` ``                                             |    N    | Copy `` ` <text> ` `` block                                                           |
-| `yit` or `yat`                                                   |    N    | Copy `<tag> <text> </tag>` block                                                      |
-| `yy` or `Y`                                                      |    N    | Copy line to the register                                                             |
-| `gg` or `H`                                                      |    N    | Move cursor to the first line and first column                                        |
-| `G`                                                              |    N    | Move the cursor to the last line and first colomn                                     |
-| `M`                                                              |    N    | Move cursor to the midle line on screen                                               |
-| `L`                                                              |    N    | Move cursor to the last line on screen                                                |
-| `u`                                                              |    N    | Undo                                                                                  |
-| `/<search>` or `?/<search>`                                      |    N    | Jump forward/backward cursor to *<search>*                                            |
-| `n` or `N`                                                       |    N    | Jump cursor to next or previous *<search>*                                            |
-| `:<number>`                                                      |    N    | Goto line *<number>*                                                                  |
-| `;`                                                              |    N    | Repeat last *f*, *F*, *t*, or *T* command                                             |
-| `.`                                                              |    N    | Repeat the last change                                                                |
-| `%`                                                              |    N    | Jump between the nearest `(` `)`, `[``]`, or `{` `}` characters on the line.          |
-| `<C-r>`                                                          |    N    | Redo                                                                                  |
-| `:.,+2s/foo/bar/g`                                               |    N    | Change each *foo* to *bar* for the current line `.` and the two next lines `+2`       |
-| `<` or `>`                                                       |    N    | Indent current line                                                                   |
-| `<S-RightMouseClick`                                             |    I    | Paste texte                                                                           |
-| `<C-u>`                                                          |    I    | Erase from cursor to start of the line                                                |
-| `<C-w>`                                                          |    I    | Erase previous word                                                                   |
-| `o` or `O`                                                       |    V    | Inverse cursor position                                                               |
+| `D`                                                              |    N    | Delete from cursor to end end of line                                                 |
+| `C`                                                              |    N    | Same as D but change in insert mode                                                   |
+| `x` or `Del`                                                     |    N    | Delete char                                                                           |
+| `<C-u>`                                                          |    I    | Delete from cursor to start of the line                                               |
+| `<C-w>`                                                          |    I    | Delete previous word                                                                  |
+| `d` or `D` or `x` or `X`                                         |    V    | Delete hightlith text                                                                 |
+
+
+##### Select
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
 | `{` or `}` or `a{` or `iw` or `aB` or `iB`                       |    V    | Highlight from cursor to the start or end of block or hilight text between `{` or `}` |
 | `i[`or `i]` or `a[`or `a]`                                       |    V    | Highlight `[ <text> ]` block                                                          |
 | `i(` or `i)` or `a(` or `a)` or `ib` or `ab`                     |    V    | Highlight `( <text> )` block                                                          |
@@ -171,17 +156,76 @@ Viewer for md file => http://dillinger.io/
 | `w` or `aw` or `W` or `aW`                                       |    V    | Highlight the current word                                                            |
 | `e` or `iw` or `iW`                                              |    V    | Highlight from cursor to the end of word                                              |
 | `b`                                                              |    V    | Highlight from cursor to the begin of word                                            |
-| `c` or `s` or `C` or `S`                                         |    V    | Cut the slected text in buffer et go to insert mode                                   |
 | `is` or `as`                                                     |    V    | Highlight sentence                                                                    |
 | `V`                                                              |    V    | Highlight the current line                                                            |
 | `f<letter>`                                                      |    V    | Highlight from cursor to `<letter>`                                                   |
-| `c`                                                              |    V    | Cut the highlight text                                                                |
-| `y` or `Y`                                                       |    V    | Copy highlight text                                                                   |
-| `d` or `D` or `x` or `X`                                         |    V    | Delete hightlith text                                                                 |
+
+
+##### Change mode
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
+| `i`                                                              |    N    | Change normal to insert mode                                                          |
+| `R`                                                              |    N    | Change normal to replace mode                                                         |
+| `v`                                                              |    N    | Change normal to visual mode                                                          |
+| `V`                                                              |    N    | Change normal to visual line mode                                                     |
+| `<C-v>`                                                          |    N    | Change normal to visual block                                                         |
+| `gh`                                                             |    N    | Change to select mode                                                                 |
+
+
+##### Move cursor
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
+| `A`                                                              |    N    | Move the cursor after the end of line and change in insert mode                       |
+| `^` or `|` or `_`                                                |    N    | Move cursor at the line begin                                                         |
+| `$`                                                              |    N    | Move the cursor at the end of line                                                    |
+| `I`                                                              |    N    | Add the cursor at the start of the line and change normal to insert mode              |
+| `W`                                                              |    N    | Jump to the next word (separate by a space)                                           |
+| `w` or `e`                                                       |    N    | Jump after the next separator (` `, `.`, `/`, `:`, `-`, `|`, ...)                     |
+| `b`                                                              |    N    | Inverse of `w`                                                                        |
+| `B`                                                              |    N    | Inverse of `W`                                                                        |
+| `f<letter>` or `F<letter>`                                       |    N    | Goto the next `<letter>`                                                              |
+| `(` or `)`                                                       |    N    | Sentence backword or forward                                                          |
+| `{` or `}`                                                       |    N    | Paragraph backward or forward                                                         |
+| `[[` or `]]`                                                     |    N    | Goto the previous `{` or next `}`                                                     |
+| `gg` or `H`                                                      |    N    | Move cursor to the first line and first column                                        |
+| `G`                                                              |    N    | Move the cursor to the last line and first colomn                                     |
+| `M`                                                              |    N    | Move cursor to the midle line on screen                                               |
+| `L`                                                              |    N    | Move cursor to the last line on screen                                                |
+| `/<search>` or `?/<search>`                                      |    N    | Jump forward/backward cursor to *<search>*                                            |
+| `n` or `N`                                                       |    N    | Jump cursor to next or previous *<search>*                                            |
+| `:<number>`                                                      |    N    | Goto line *<number>*                                                                  |
+| `;`                                                              |    N    | Repeat last *f*, *F*, *t*, or *T* command                                             |
+| `%`                                                              |    N    | Jump between the nearest `(` `)`, `[``]`, or `{` `}` characters on the line.          |
+| `o` or `O`                                                       |    V    | Inverse cursor position                                                               |
+
+##### Replace
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
+| `r`                                                              |    N    | Replace single character at cursor                                                    |
 | `r<letter>`                                                      |    V    | Replace the highlight text by `<letter>`                                              |
-| `<` or `>`                                                       |    V    | Indent highlight lines                                                                |
+| `:.,+2s/foo/bar/g`                                               |    N    | Change each *foo* to *bar* for the current line `.` and the two next lines `+2`       |
 | `:s/original_text_to_replace/new_text/g`                         |    V    | Replace *original_text_roreplace* by *new_text* for the highlight text                |
-| `A` or `I`                                                       | V block | At texte at the begin or end of the selected lines                                    |
+
+
+##### Other
+
+| Keystrokes                                                       |   Mode  | Description                                                                           |
+|------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
+| `p` or `P`                                                       |    N    | Paste the register                                                                    |
+| `<S-RightMouseClick`                                             |    I    | Paste text                                                                            |
+| `o`                                                              |    N    | Add line below and change to insert mode                                              |
+| `O`                                                              |    N    | Add line above and change to insert mode                                              |
+| `a`                                                              |    N    | Change to insert mode after the cursor                                                |
+| `J`                                                              |    N    | Join lines                                                                            |
+| `u`                                                              |    N    | Undo                                                                                  |
+| `<C-r>`                                                          |    N    | Redo                                                                                  |
+| `.`                                                              |    N    | Repeat the last change                                                                |
+| `<` or `>`                                                       |    N    | Indent current line                                                                   |
+| `<` or `>`                                                       |    V    | Indent highlight lines                                                                |
+| `A` or `I`                                                       | V block | Add texte at the begin or end of the selected lines                                   |
 
 
 #### Play with registers
@@ -195,7 +239,7 @@ Viewer for md file => http://dillinger.io/
 | `"ap`            |   N  | Paste the register `a`                                                                                                             |
 | `"_diw`          |   N  | Prefix with `"_` for without saving a copy in a register. In this exemple erase current word without saving a copy in the register |
 | `:reg`           |   N  | Show registers                                                                                                                     |
-| `:reg a b c d`   |   N  | Show register `a b c d`                                                                                                            |
+| `:reg a b c d`   |   N  | Show registers `a`, `b`, `c` and `d`                                                                                               |
 
 
 #### Play with marks
@@ -236,6 +280,8 @@ Viewer for md file => http://dillinger.io/
 
 ### Plugin key mapping
 
+Main key mapping (read officials documentations plugins for all key mapping) :
+
 | Plugin                                                    | Mode |      Keystrokes      | Description                                                                                                                             |
 |-----------------------------------------------------------|:----:|:--------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
 | Alias (builtin)                                           |   N  |      `<Leader>/`     | Toogle inlight search                                                                                                                   |
@@ -258,6 +304,13 @@ Viewer for md file => http://dillinger.io/
 | [gundo.vim](#gundovim)                                    |   N  |      `<Leader>u`     | Open Gundo for show all undo                                                                                                            |
 | [youcompleteme](#youcompleteme)                           |   N  |        `<F2>`        | Load YouCompleteMe (disable at load because too heavy). Load also the (vim-snippets)[#vim-snippets] and [ultisnips](#ultisnips) plugin. |
 | [tagbar](#tagbar)                                         |   N  |        `<F3>`        | Open Tagbar for show all vars, functions, class...                                                                                      |
+| [vim-colors-solarized](#vim-colors-solarized)             |   N  |        `<F5>`        | Switch dark/ligh background                                                                                                             |
+| [rainbow](#rainbow)                                       |   N  | `<Leader><Leader>r`  | Toggle plugin Rainbow                                                                                                                   |
+| [HTML-AutoCloseTag](#HTML-AutoCloseTag)                   |   N  |     `<Leader>ac`     | Toggle plugin HTML-AutoCloseTag                                                                                                         |
+| [vim-signify](#vim-signify)                               |   N  |     `<Leader>gg`     | Toggle plugin vim-signigy                                                                                                               |
+| [vim-signify](#vim-signify)                               |   N  |     `<Leader>gh`     | Toggle text highlighting                                                                                                                |
+| [vim-signify](#vim-signify)                               |   N  |     `<Leader>gj`     | Goto next diff                                                                                                                          |
+| [vim-signify](#vim-signify)                               |   N  |     `<leader>gk`     | Goto previous diff                                                                                                                      |
 
 
  * [vim-easy-align](#vim-easy-align) key mapping :
@@ -314,23 +367,37 @@ After have pressed `<Leader>aip` / `gaip` or selected text in visual mode and pr
 | `Ctrl-v<highlight the text>S<li>`  | Add tag `<li></li>` arround each line                 |
 
 
-| Target | Explanation                                                                                                                                |
-|:------:|--------------------------------------------------------------------------------------------------------------------------------------------|
-| ( or ) | Bracket. Using an open bracket adds additional spaces. Using a closed bracket doesn't add space.                                           |
-| { or } | Squiggly brackets. Using an open one ({) adds additional spaces. Using a closed one doesn't add space.                                     |
-| [ or ] | Square brackets. Using an open bracket ie [ adds additional spaces. A closed one doesn't add spaces.                                       |
-| < or > | Diamond bracket. Using an open one (<) adds additional spaces. A closed one doesn't add spaces.                                            |
-|    b   | Bracket, alternative to (                                                                                                                  |
-|    B   | Bracket, alternative to )                                                                                                                  |
-|    r   | Alias for }                                                                                                                                |
-|    a   | Alias for ]                                                                                                                                |
-|    `   | A backtick                                                                                                                                 |
-|    "   | A quote                                                                                                                                    |
-|    '   | A single quote                                                                                                                             |
-|    t   | A pair of HTML or XML tags                                                                                                                 |
-|    w   | A word                                                                                                                                     |
-|    s   | A sentence. I avoid as it's a bit confusing, it only works with cs and it mentally conflicts with yss meaning to work on the current line. |
-|    p   | A paragraph.                                                                                                                               |
+| Target     | Explanation                                                                                                                                |
+|:----------:|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `(` or `)` | Bracket. Using an open bracket adds additional spaces. Using a closed bracket doesn't add space.                                           |
+| `{` or `}` | Squiggly brackets. Using an open one ({) adds additional spaces. Using a closed one doesn't add space.                                     |
+| `[` or `]` | Square brackets. Using an open bracket ie [ adds additional spaces. A closed one doesn't add spaces.                                       |
+| `<` or `>` | Diamond bracket. Using an open one (<) adds additional spaces. A closed one doesn't add spaces.                                            |
+|    `b`     | Bracket, alternative to (                                                                                                                  |
+|    `B`     | Bracket, alternative to )                                                                                                                  |
+|    `r`     | Alias for }                                                                                                                                |
+|    `a`     | Alias for ]                                                                                                                                |
+|  `` ` ``   | A backtick                                                                                                                                 |
+|    `"`     | A quote                                                                                                                                    |
+|    `'`     | A single quote                                                                                                                             |
+|    `t`     | A pair of HTML or XML tags                                                                                                                 |
+|    `w`     | A word                                                                                                                                     |
+|    `s`     | A sentence. I avoid as it's a bit confusing, it only works with cs and it mentally conflicts with yss meaning to work on the current line. |
+|    `p`     | A paragraph.                                                                                                                               |
+
+ * [vim-fugitive](#vim-fugitive) key mapping :
+|       Keystoke      | Command                                                                                                                           |
+|:-------------------:|-----------------------------------------------------------------------------------------------------------------------------------|
+| <silent> <leader>gs |:Gstatus<CR>                                                                                                                       |
+| <silent> <leader>gd |:Gdiff<CR>                                                                                                                         |
+| <silent> <leader>gc |:Gcommit<CR>                                                                                                                       |
+| <silent> <leader>gb |:Gblame<CR>                                                                                                                        |
+| <silent> <leader>gl |:Glog<CR>                                                                                                                          |
+| <silent> <leader>gp |:Git push<CR>                                                                                                                      |
+| <silent> <leader>gr |:Gread<CR>                                                                                                                         |
+| <silent> <leader>gw |:Gwrite<CR>                                                                                                                        |
+| <silent> <leader>ge |:Gedit<CR>                                                                                                                         |
+| <silent> <leader>gi |:Git add -p %<CR>                                                                                                                  |
 
 
 Modules
