@@ -407,7 +407,9 @@ After have pressed `<Leader>aip` / `gaip` or selected text in visual mode and pr
 |    `s`     | A sentence. I avoid as it's a bit confusing, it only works with cs and it mentally conflicts with yss meaning to work on the current line. |
 |    `p`     | A paragraph.                                                                                                                               |
 
+
  * [vim-fugitive](#vim-fugitive) key mapping :
+
 |       Keystoke      | Command                                                                                                                           |
 |:-------------------:|-----------------------------------------------------------------------------------------------------------------------------------|
 | <silent> <leader>gs |:Gstatus<CR>                                                                                                                       |
@@ -517,8 +519,8 @@ If you use vim with **Putty**, you must install compatible fonts like [DejaVuSan
 ![YouCompleteMe demo](http://i.imgur.com/0OP4ood.gif)
 
 #### Requirements
- * for use : Vim compiled with `python`+ `python`
- * for compilation : `python` + `python-devel` + `cmake`+ `g++`+ `Exuberant Ctags`
+ * for use : Vim compiled with `python`+ `python` + `Exuberant Ctags`
+ * for compilation : `python` + `python-devel` + `cmake`+ `g++`
 
 #### Compilation
 YCM has been compile with `./install.py`. If you want more see below :
