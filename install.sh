@@ -31,8 +31,10 @@ verif_deps() {
     which python &>/dev/null && success "python is installed" || error "Python is recommended for some modules"
     vim --version | egrep '\+python' &> /dev/null && success "VIM is compiled with python" || error "VIM is not compiled with python ! Some modules. Some modules will not work !"
     which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
-    which cmake &>/dev/null && success "cmake is installed" || error "cmake is recommended for some modules"
-    which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for some modules"
+    which cmake &>/dev/null && success "cmake is installed" || error "cmake is recommended for compile some modules"
+    which automake &>/dev/null && success "automake is installed" || error "automake is recommended for compile some modules"
+    which gcc &>/dev/null && success "gcc is installed" || error "gcc is recommended for compile some modules"
+    which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for compile some modules"
 }
 
 setup_neoBundle() {
