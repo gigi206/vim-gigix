@@ -57,7 +57,7 @@ Inspired by [spf13-vim](http://vim.spf13.com/).
 Installation
 ------------
 ```sh
-curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -L -o - | sh
+curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -L -o - | bash
 ```
 
 Learn VIM
