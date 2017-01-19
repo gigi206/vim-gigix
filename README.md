@@ -278,20 +278,41 @@ Viewer for md file => http://dillinger.io/
 | `:vsp [file]`                      |   N  | Open new vertically split window                       |
 
 
+#### Play with folding
+
+| Keystrokes                      | Mode | Description                                                                 |
+|---------------------------------|:----:|-----------------------------------------------------------------------------|
+| `setlocal foldmethod=<method>`  |   N  | Use methods `indent` for python for example or `syntax` for other languages |
+| `zi`                            |   N  | Switch folding on or off                                                    |
+| `za`                            |   N  | Toggle current fold open/closed                                             |
+| `zA`                            |   N  | Recursively open/close current fold                                         |
+| `zc`                            |   N  | Close current fold                                                          |
+| `zR`                            |   N  | Open all folds                                                              |
+| `zr`                            |   N  | Increase `foldlevel` by one                                                 |
+| `Zm`                            |   N  | Reduce `foldlevel` by one                                                   |
+| `zM`                            |   N  | Cose all folds                                                              |
+| `zv`                            |   N  | Expand folds to reveal cursor                                               |
+| `zj`                            |   N  | Move down to top of next fold                                               |
+| `zk`                            |   N  | Move down to top of next fold                                               |
+| `zo`                            |   N  | Open current fold                                                           |
+| `zO`                            |   N  | Recursively open current fold                                               |
+
+
 ### Plugin key mapping
 
 Main key mapping (read officials documentations plugins for all key mapping) :
 
 | Plugin                                                    | Mode |      Keystrokes      | Description                                                                                                                             |
 |-----------------------------------------------------------|:----:|:--------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Alias (builtin)                                           |   N  |      `<Leader>/`     | Toogle inlight search                                                                                                                   |
+| Alias (builtin)                                           |   N  |      `<Leader>/`     | Toggle inlight search                                                                                                                   |
 | Alias (builtin)                                           |   N  |        `<Tab>`       | Next buffer                                                                                                                             |
 | Alias (builtin)                                           |   N  |       `<S-Tab>`      | Previous buffer                                                                                                                         |
 | Alias (builtin)                                           |   N  |        `<C-d>`       | Delete Buffer                                                                                                                           |
-| Alias (builtin)                                           |   N  |        `<F9>`        | Toogle wrap lines                                                                                                                       |
-| Alias (builtin)                                           |   N  |        `<F10>`       | Toogle cursorline                                                                                                                       |
-| Alias (builtin)                                           |   N  |        `<F11>`       | Toogle line number                                                                                                                      |
-| Alias (builtin)                                           |   N  |        `<F12>`       | Toogle paste mode                                                                                                                       |
+| Alias (builtin)                                           |   N  |        `<F9>`        | Toggle wrap lines                                                                                                                       |
+| Alias (builtin)                                           |   N  |        `<F10>`       | Toggle cursorline                                                                                                                       |
+| Alias (builtin)                                           |   N  |        `<F11>`       | Toggle line number                                                                                                                      |
+| Alias (builtin)                                           |   N  |        `<F12>`       | Toggle paste mode                                                                                                                       |
+| Alias (builtin)                                           |   N  |       `<Space>`      | Toggle folding                                                                                                                          |
 | [ultisnips](#ultisnips) and [vim-nippets](#vim-snippets)) |   I  |        `<Tab>`       | Execute the snippet                                                                                                                     |
 | [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |        `<C-n>`       | Highlights the current word. Press more for select the same next word                                                                   |
 | [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |        `<C-x>`       | Skip the current word                                                                                                                   |
@@ -307,6 +328,7 @@ Main key mapping (read officials documentations plugins for all key mapping) :
 | [vim-colors-solarized](#vim-colors-solarized)             |   N  |        `<F5>`        | Switch dark/ligh background                                                                                                             |
 | [rainbow](#rainbow)                                       |   N  | `<Leader><Leader>r`  | Toggle plugin Rainbow                                                                                                                   |
 | [HTML-AutoCloseTag](#HTML-AutoCloseTag)                   |   N  |     `<Leader>ac`     | Toggle plugin HTML-AutoCloseTag                                                                                                         |
+| [vim-indent-guides](#vim-indent-guides)                   |   N  |     `<Leader>ig`     | Toggle plugin vim-indent-guides                                                                                                         |
 | [vim-signify](#vim-signify)                               |   N  |     `<Leader>gg`     | Toggle plugin vim-signigy                                                                                                               |
 | [vim-signify](#vim-signify)                               |   N  |     `<Leader>gh`     | Toggle text highlighting                                                                                                                |
 | [vim-signify](#vim-signify)                               |   N  |     `<Leader>gj`     | Goto next diff                                                                                                                          |

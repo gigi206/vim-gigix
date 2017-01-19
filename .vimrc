@@ -156,6 +156,12 @@ nnoremap <F10> :set cursorline!<CR>
 nnoremap <F11> :set number!<CR>
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
+"autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,ruby setlocal foldmethod=syntax
+"autocmd Syntax python setlocal foldmethod=indent
+"autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,ruby,python normal zR
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
 if has('gui_running')
     " Gui here
 else
@@ -381,13 +387,6 @@ endif
         "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
         "autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-        " Haskell post write lint and check with ghcmod
-        " $ `cabal install ghcmod` if missing and ensure
-        " ~/.cabal/bin is in your $PATH.
-        if !executable("ghcmod")
-            autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-        endif
-
         " For snippet_complete marker.
         if has('conceal')
             set conceallevel=2 concealcursor=i
@@ -435,7 +434,7 @@ function! ToggleBackground()
         if !exists('g:init_Background')
             let g:init_Background=1
             "set bg=light " light is the default bg
-            "set bg=dark
+            set bg=dark
 
             highlight clear SignColumn      " SignColumn should match background
 
@@ -447,28 +446,29 @@ function! ToggleBackground()
                 "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
                 "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
                 "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
+                "autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd ctermfg=15 ctermbg=7 guifg=grey85 guibg=grey70
             elseif &background == 'dark'
                 let g:airline_theme = 'luna'
                 highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
             endif
-            return
-        endif
+        else
+            if &background == 'light'
+                set bg=dark
+                highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
 
-       if &background == 'light'
-            set bg=dark
-            highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
+                if exists('g:airline_theme')
+                    AirlineTheme luna
+                endif
+            elseif &background == 'dark'
+                set bg=light
+                highlight link EasyMotionTarget ErrorMsg
+                highlight link EasyMotionTarget2First Search
+                highlight link EasyMotionTarget2Second Search
+                "autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd ctermfg=15 ctermbg=7 guifg=grey85 guibg=grey70
 
-            if exists('g:airline_theme')
-                AirlineTheme luna
-            endif
-        elseif &background == 'dark'
-            set bg=light
-            highlight link EasyMotionTarget ErrorMsg
-            highlight link EasyMotionTarget2First Search
-            highlight link EasyMotionTarget2Second Search
-
-            if exists('g:airline_theme')
-                AirlineTheme lucius
+                if exists('g:airline_theme')
+                    AirlineTheme lucius
+                endif
             endif
         endif
     endif
