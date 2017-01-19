@@ -72,6 +72,7 @@ NeoBundleLazy 'majutsushi/tagbar', {'external_commands' : ['ctags-exuberant'], '
 NeoBundleLazy 'SirVer/ultisnips'
 NeoBundleLazy 'honza/vim-snippets'
 NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python install.py'}, 'external_commands' : ['ctags-exuberant'], 'disabled' : (!has('python')), 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
+NeoBundleLazy 'Anthony25/gnome-terminal-colors-solarized'
 
 " You can specify revision/branch/tag.
 "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }

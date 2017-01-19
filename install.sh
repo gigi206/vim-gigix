@@ -35,6 +35,20 @@ setup_neoBundle() {
     vim "+set nomore" "+NeoBundleInstall!" "+qall" && success "Now updating/installing plugins using NeoBundle" || error "Problem when installation some modules !"
 }
 
+configure_gnome-terminal() {
+    which dconf &>/dev/null && (
+        #profiles_uuid=`dconf list /org/gnome/terminal/legacy/profiles:/ | egrep '^:' | sed 's@/@@g'`
+        default_profile_uuid=`dconf read /org/gnome/terminal/legacy/profiles:/default | sed "s@'@@g"`
+        default_profile_name=`dconf read /org/gnome/terminal/legacy/profiles:/:${default_profile_uuid}/visible-name  | sed "s@'@@g"`
+        dconf write /org/gnome/terminal/legacy/profiles:/${default_profile_uuid}/use-system-font false
+        dconf write /org/gnome/terminal/legacy/profiles:/${default_profile_uuid}/font "'Droid Sans Mono for Powerline 12'"
+
+        ~/.vim/bundle/gnome-terminal-colors-solarized/install.sh --skip-dircolors -s dark -p $default_profile_name
+        success "gnome-terminal is configured"
+    )
+}
+
 verif_deps
 get_vimrc
 setup_neoBundle
+configure_gnome-terminal
