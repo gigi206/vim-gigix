@@ -208,22 +208,6 @@ endif
         if !exists('g:airline_symbols')
             let g:airline_symbols = {}
         endif
-
-"        if exists('g:airline_powerline_fonts')
-"            " powerline symbols
-"            let g:airline_left_sep = ''
-"            let g:airline_left_alt_sep = ''
-"            let g:airline_right_sep = ''
-"            let g:airline_right_alt_sep = ''
-"            let g:airline_symbols.branch = ''
-"            let g:airline_symbols.readonly = ''
-"            let g:airline_symbols.linenr = ''
-"        else
-"            " Use the default set of separators with a few customizations
-"            let g:airline_left_sep=''  " Slightly fancier than '>'
-"            let g:airline_right_sep='' " Slightly fancier than '<'
-"        endif
-
     endif
 " }
 
