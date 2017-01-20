@@ -162,6 +162,8 @@ set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 "autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,ruby,python normal zR
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+"nnoremap <silent> <F5> :exec &bg=="dark" ? "call LightBackground()" : "call DarkBackground()"<CR>
+nnoremap <silent> <F5> :call ToggleBackground()<CR>
 
 if has('gui_running')
     " Gui here
@@ -196,16 +198,6 @@ endif
         " Workaround for vim-airline with lazyredraw
         autocmd VimEnter * redrawstatus!
 
-        "if !exists('g:airline_theme')
-            "let g:airline_theme = 'lucius'
-            "let g:airline_theme = 'luna'
-        "endif
-        if !exists('g:airline_powerline_fonts')
-            " Use the default set of separators with a few customizations
-            let g:airline_left_sep=''  " Slightly fancier than '>'
-            let g:airline_right_sep='' " Slightly fancier than '<'
-        endif
-
     if has('statusline')
         set laststatus=2
     endif
@@ -217,14 +209,21 @@ endif
             let g:airline_symbols = {}
         endif
 
-        " powerline symbols
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-        let g:airline_symbols.branch = ''
-        let g:airline_symbols.readonly = ''
-        let g:airline_symbols.linenr = ''
+"        if exists('g:airline_powerline_fonts')
+"            " powerline symbols
+"            let g:airline_left_sep = ''
+"            let g:airline_left_alt_sep = ''
+"            let g:airline_right_sep = ''
+"            let g:airline_right_alt_sep = ''
+"            let g:airline_symbols.branch = ''
+"            let g:airline_symbols.readonly = ''
+"            let g:airline_symbols.linenr = ''
+"        else
+"            " Use the default set of separators with a few customizations
+"            let g:airline_left_sep=''  " Slightly fancier than '>'
+"            let g:airline_right_sep='' " Slightly fancier than '<'
+"        endif
+
     endif
 " }
 
@@ -430,54 +429,34 @@ endif
 " }
 
 " Functions
+function! DarkBackground()
+    let g:airline_theme='luna'
+    set bg=dark
+    "highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
+endfunction
+
+function! LightBackground()
+    let g:airline_theme='lucius'
+    set bg=light
+    highlight link EasyMotionTarget ErrorMsg
+    highlight link EasyMotionTarget2First Search
+    highlight link EasyMotionTarget2Second Search
+    "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
+    "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
+    "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
+    "autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd ctermfg=15 ctermbg=7 guifg=grey85 guibg=grey70
+endfunction
+
 function! ToggleBackground()
-    if exists('g:colors_name') && g:colors_name == 'solarized'
-        if !exists('g:init_Background')
-            let g:init_Background=1
-            "set bg=light " light is the default bg
-            set bg=dark
-
-            highlight clear SignColumn      " SignColumn should match background
-
-            if &background == 'light'
-                let g:airline_theme = 'lucius'
-                highlight link EasyMotionTarget ErrorMsg
-                highlight link EasyMotionTarget2First Search
-                highlight link EasyMotionTarget2Second Search
-                "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
-                "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
-                "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
-                "autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd ctermfg=15 ctermbg=7 guifg=grey85 guibg=grey70
-            elseif &background == 'dark'
-                let g:airline_theme = 'luna'
-                highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
-            endif
-        else
-            if &background == 'light'
-                set bg=dark
-                highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
-
-                if exists('g:airline_theme')
-                    AirlineTheme luna
-                endif
-            elseif &background == 'dark'
-                set bg=light
-                highlight link EasyMotionTarget ErrorMsg
-                highlight link EasyMotionTarget2First Search
-                highlight link EasyMotionTarget2Second Search
-                "autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd ctermfg=15 ctermbg=7 guifg=grey85 guibg=grey70
-
-                if exists('g:airline_theme')
-                    AirlineTheme lucius
-                endif
-            endif
-        endif
+    if &bg == 'dark'
+        call LightBackground()
+    else
+        call DarkBackground()
     endif
 endfunction
 " End functions
 
-call ToggleBackground()
-nnoremap <F5> :call ToggleBackground()<CR>
+call DarkBackground()
 
 " Use local vimrc if available {
     if filereadable(expand("~/.vimrc.local"))
