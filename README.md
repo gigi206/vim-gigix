@@ -84,6 +84,7 @@ Viewer for md file => http://dillinger.io/
 -->
 
 ### Original VIM key mapping
+[Vim Cheat Sheet](https://vim.rtorr.com/)
 
 #### Builtin key mapping without plugin or remapping
 
