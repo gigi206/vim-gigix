@@ -67,8 +67,8 @@ NeoBundleLazy 'mhinz/vim-signify', {'autoload' : {'commands' : ['SignifyToggle']
 NeoBundleLazy 'ctrlpvim/ctrlp.vim', {'autoload' : {'mappings' : ['<C-p>']}}
 NeoBundleLazy 'luochen1990/rainbow', {'autoload' : {'filetypes': ['xml', 'xhtml', 'html', 'vim', 'php']}}
 NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload' : {'filetypes': ['html']}}
-NeoBundleLazy 'sjl/gundo.vim', {'external_commands' : [ 'python' ], 'disabled' : (!has('python')), 'autoload' : {'commands' : ['GundoToggle']}}
-NeoBundleLazy 'majutsushi/tagbar', {'external_commands' : ['ctags-exuberant'], 'autoload' : {'commands' : ['TagbarToggle']}}
+NeoBundleLazy 'sjl/gundo.vim', {'external_commands' : ['python'], 'disabled' : (!has('python')), 'autoload' : {'commands' : ['GundoToggle']}}
+NeoBundleLazy 'majutsushi/tagbar', {'external_commands' : ['ctags-exuberant'], 'disabled' : (!executable('ctags-exuberant')), 'autoload' : {'commands' : ['TagbarToggle']}}
 NeoBundleLazy 'SirVer/ultisnips'
 NeoBundleLazy 'honza/vim-snippets'
 NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python install.py'}, 'external_commands' : ['python'], 'build_commands' : ['automake', 'cmake', 'g++', 'gcc', 'python'], 'disabled' : (!has('python')), 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
@@ -154,7 +154,9 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <C-d> :bd!<CR>
 nnoremap <F9> :set wrap!<CR>
 nnoremap <F10> :set cursorline!<CR>
+nnoremap <Leader><Leader>l :set cursorline!<CR> " For compatibility with some terminals
 nnoremap <F11> :set number!<CR>
+nnoremap <Leader><Leader>n :set number!<CR> " For compatibility with some terminals
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 "autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,ruby setlocal foldmethod=syntax
@@ -162,8 +164,6 @@ set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 "autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,ruby,python normal zR
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-"nnoremap <silent> <F5> :exec &bg=="dark" ? "call LightBackground()" : "call DarkBackground()"<CR>
-nnoremap <silent> <F5> :call ToggleBackground()<CR>
 
 if has('gui_running')
     " Gui here
@@ -182,7 +182,9 @@ endif
         "set background=dark         " Assume a dark background
         "set background=light        " Assume a light background
         colorscheme solarized
-
+        if g:colors_name == 'solarized'
+            nnoremap <silent> <F5> :call ToggleBackground()<CR>
+        endif
         "set cursorcolumn                " Highlight current column
         set cursorline                  " Highlight current line
         "highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -204,6 +206,7 @@ endif
 
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#branch#enabled = 1
 
         if !exists('g:airline_symbols')
             let g:airline_symbols = {}
@@ -440,7 +443,9 @@ function! ToggleBackground()
 endfunction
 " End functions
 
-call DarkBackground()
+if g:colors_name == 'solarized'
+    call DarkBackground()
+endif
 
 " Use local vimrc if available {
     if filereadable(expand("~/.vimrc.local"))
