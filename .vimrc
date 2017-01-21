@@ -244,9 +244,9 @@ endif
 " Wildfire {
     if isdirectory(g:MyPluginPath . "/wildfire.vim")
         let g:wildfire_objects = {
-                    \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
-                    \ "html,xml" : ["at", "it"],
-                    \ }
+            \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+            \ "html,xml" : ["at", "it"],
+        \ }
     endif
 " }
 
