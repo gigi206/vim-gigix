@@ -183,7 +183,7 @@ endif
         "set background=dark         " Assume a dark background
         "set background=light        " Assume a light background
         colorscheme solarized
-        if g:colors_name == 'solarized'
+        if exists('g:colors_name') && g:colors_name == 'solarized'
             nnoremap <silent> <F5> :call ToggleBackground()<CR>
         endif
         "set cursorcolumn                " Highlight current column
@@ -444,7 +444,7 @@ function! ToggleBackground()
 endfunction
 " End functions
 
-if g:colors_name == 'solarized'
+if exists('g:colors_name') && g:colors_name == 'solarized'
     call DarkBackground()
 endif
 
