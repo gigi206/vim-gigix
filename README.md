@@ -11,7 +11,7 @@ https://ecotrust-canada.github.io/markdown-toc/
   * [Original VIM key mapping](#original-vim-key-mapping)
     + [Builtin key mapping without plugin or remapping](#builtin-key-mapping-without-plugin-or-remapping)
       - [Yank](#yank)
-      - [Cut](#cut)
+      - [Change](#change)
       - [Delete](#delete)
       - [Select](#select)
       - [Change mode](#change-mode)
@@ -108,25 +108,25 @@ Viewer for md file => http://dillinger.io/
 | `y` or `Y`                                                       |    V    | Copy highlight text                                                                   |
 
 
-##### Cut
+##### Change
 
 | Keystrokes                                                       |   Mode  | Description                                                                           |
 |------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
-| `cgn`                                                            |    N    | Cut the previous search                                                               |
-| `cf<letter>`                                                     |    N    | Cut from cursor to `<letter>`                                                         |
-| `cw` or `ciw` or `caw` or `cW` or `caW` or `ciW` or `ce` or `cE` |    N    | Cut from cursor to the end word                                                       |
-| `cb` or `cB`                                                     |    N    | Cut from cursor to the begin word                                                     |
-| `cap` or `cip`                                                   |    N    | Cut the current block                                                                 |
-| `ci(` or `ci)` or `ca(` or `ca)` or `cib` or `cab`               |    N    | Cut `( <text> )` block                                                                |
-| `ci[` or `ci]` or `ca[` or `ca]`                                 |    N    | Cut `[ <text> ]` block                                                                |
-| `ci{` or `ci}` or `ca{` or `ca}` or `ciB` or `caB`               |    N    | Cut `{ <text> }` block                                                                |
-| `ci<` or `ci>` or `ca<` or `ca>`                                 |    N    | Cut `< <text> >` block                                                                |
-| `ci"` or `ca"`                                                   |    N    | Cut `" <text> "` block                                                                |
-| `ci'` or `ca'`                                                   |    N    | Cut `' <text> '` block                                                                |
-| ``ci` `` or ``ca` ``                                             |    N    | Cut `` ` <text> ` `` block                                                            |
-| `cit` or `cat`                                                   |    N    | Cut `<tag> <text> </tag>` block                                                       |
-| `c` or `s` or `C` or `S`                                         |    V    | Cut the slected text in buffer et go to insert mode                                   |
-| `c`                                                              |    V    | Cut the highlight text                                                                |
+| `cgn`                                                            |    N    | Change the previous search                                                               |
+| `cf<letter>`                                                     |    N    | Change from cursor to `<letter>`                                                         |
+| `cw` or `ciw` or `caw` or `cW` or `caW` or `ciW` or `ce` or `cE` |    N    | Change from cursor to the end word                                                       |
+| `cb` or `cB`                                                     |    N    | Change from cursor to the begin word                                                     |
+| `cap` or `cip`                                                   |    N    | Change the current block                                                                 |
+| `ci(` or `ci)` or `ca(` or `ca)` or `cib` or `cab`               |    N    | Change `( <text> )` block                                                                |
+| `ci[` or `ci]` or `ca[` or `ca]`                                 |    N    | Change `[ <text> ]` block                                                                |
+| `ci{` or `ci}` or `ca{` or `ca}` or `ciB` or `caB`               |    N    | Change `{ <text> }` block                                                                |
+| `ci<` or `ci>` or `ca<` or `ca>`                                 |    N    | Change `< <text> >` block                                                                |
+| `ci"` or `ca"`                                                   |    N    | Change `" <text> "` block                                                                |
+| `ci'` or `ca'`                                                   |    N    | Change `' <text> '` block                                                                |
+| ``ci` `` or ``ca` ``                                             |    N    | Change `` ` <text> ` `` block                                                            |
+| `cit` or `cat`                                                   |    N    | Change `<tag> <text> </tag>` block                                                       |
+| `c` or `s` or `C` or `S`                                         |    V    | Change the slected text in buffer et go to insert mode                                   |
+| `c`                                                              |    V    | Change the highlight text                                                                |
 
 
 ##### Delete
@@ -174,7 +174,7 @@ Viewer for md file => http://dillinger.io/
 | `f<letter>`                                                      |    V    | Highlight from cursor to `<letter>`                                                   |
 
 
-##### Change mode
+##### Switch mode
 
 | Keystrokes                                                       |   Mode  | Description                                                                           |
 |------------------------------------------------------------------|:-------:|---------------------------------------------------------------------------------------|
@@ -338,7 +338,7 @@ Main key mapping (read officials documentations plugins for all key mapping) :
 | [ctrlp.vim](#ctrlpvim)                                    |   N  |             `<C-p>`            | Open ctrlp for search file                                                                                                              |
 | [gundo.vim](#gundovim)                                    |   N  |           `<Leader>u`          | Open Gundo for show all undo                                                                                                            |
 | [youcompleteme](#youcompleteme)                           |   N  |             `<F2>`             | Load YouCompleteMe (disable at load because too heavy). Load also the (vim-snippets)[#vim-snippets] and [ultisnips](#ultisnips) plugin. |
-| [tagbar](#tagbar)                                         |   N  |             `<F3>`             | Open Tagbar for show all vars, functions, class...                                                                                      |
+| [tagbar](#tagbar)                                         |   N  |             `<F3>`             | Open Tagbar for show all vars, functions, classes...                                                                                    |
 | [vim-colors-solarized](#vim-colors-solarized)             |   N  |             `<F5>`             | Switch dark/ligh background                                                                                                             |
 | [rainbow](#rainbow)                                       |   N  |      `<Leader><Leader>r`       | Toggle plugin Rainbow                                                                                                                   |
 | [HTML-AutoCloseTag](#HTML-AutoCloseTag)                   |   N  |          `<Leader>ac`          | Toggle plugin HTML-AutoCloseTag                                                                                                         |
