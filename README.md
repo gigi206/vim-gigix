@@ -304,7 +304,7 @@ Viewer for md file => http://dillinger.io/
 | `zR`                            |   N  | Open all folds                                                              |
 | `zr`                            |   N  | Increase `foldlevel` by one                                                 |
 | `Zm`                            |   N  | Reduce `foldlevel` by one                                                   |
-| `zM`                            |   N  | Cose all folds                                                              |
+| `zM`                            |   N  | Close all folds                                                             |
 | `zv`                            |   N  | Expand folds to reveal cursor                                               |
 | `zj`                            |   N  | Move down to top of next fold                                               |
 | `zk`                            |   N  | Move down to top of next fold                                               |
@@ -587,7 +587,7 @@ cd ~/.vim/bundle/YouCompleteMe
 
 Tips
 ----
-Write `set undofile` in **.vimrc** file for have persistent undo.
+Write `set undofile` and `set undodir` in **.vimrc** file for have persistent undo.
 
 Troubleshooting
 ---------------

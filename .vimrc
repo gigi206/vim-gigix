@@ -97,8 +97,8 @@ NeoBundleCheck
 
 set nobackup
 set history=1000     " Store lasts history
-"set undofile                " Persistent undo
-"undodir=~/.vim/undo         " Persistent undo directory
+"set undofile         " Persistent undo
+"set undodir=~/.vim/undo     " Persistent undo directory
 set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 set undolevels=1000         " Maximum number of changes that can be undone
 "set nohlsearch       " Disable highlight for search
