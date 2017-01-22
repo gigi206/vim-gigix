@@ -52,6 +52,7 @@ https://ecotrust-canada.github.io/markdown-toc/
     + [Compilation](#compilation)
   * [vim-snippets](#vim-snippets)
   * [ultisnips](#ultisnips)
+- [Tips](#tips)
 - [Troubleshooting](#troubleshooting)
 
 
@@ -314,37 +315,37 @@ Viewer for md file => http://dillinger.io/
 
 Main key mapping (read officials documentations plugins for all key mapping) :
 
-| Plugin                                                    | Mode |      Keystrokes      | Description                                                                                                                             |
-|-----------------------------------------------------------|:----:|:--------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Alias (builtin)                                           |   N  |      `<Leader>/`     | Toggle inlight search                                                                                                                   |
-| Alias (builtin)                                           |   N  |        `<Tab>`       | Next buffer                                                                                                                             |
-| Alias (builtin)                                           |   N  |       `<S-Tab>`      | Previous buffer                                                                                                                         |
-| Alias (builtin)                                           |   N  |        `<C-d>`       | Delete Buffer                                                                                                                           |
-| Alias (builtin)                                           |   N  |        `<F9>`        | Toggle wrap lines                                                                                                                       |
-| Alias (builtin)                                           |   N  |        `<F10>`       | Toggle cursorline                                                                                                                       |
-| Alias (builtin)                                           |   N  |        `<F11>`       | Toggle line number                                                                                                                      |
-| Alias (builtin)                                           |   N  |        `<F12>`       | Toggle paste mode                                                                                                                       |
-| Alias (builtin)                                           |   N  |       `<Space>`      | Toggle folding                                                                                                                          |
-| [ultisnips](#ultisnips) and [vim-nippets](#vim-snippets)) |   I  |        `<Tab>`       | Execute the snippet                                                                                                                     |
-| [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |        `<C-n>`       | Highlights the current word. Press more for select the same next word                                                                   |
-| [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |        `<C-x>`       | Skip the current word                                                                                                                   |
-| [matchit.zip](#matchit.zip)                               |   N  |          `%`         | Select next/previous bracket                                                                                                            |
-| [vim-easymotion](#vim-easymotion)                         |   N  | `<Leader></Leader>s` | Search word begin by...                                                                                                                 |
-| [vim-easymotion](#vim-easymotion)                         |   N  | `<Leader></Leader>w` | Print all word backward / forward                                                                                                       |
-| [wildfire.vim](#wildfirevim)                              |   N  |        `<CR>`        | Select text                                                                                                                             |
-| [nerdtree](#nerdtree)                                     |   N  |      `<Leader>e`     | Open NerdTree                                                                                                                           |
-| [ctrlp.vim](#ctrlpvim)                                    |   N  |        `<C-p>`       | Open ctrlp for search file                                                                                                              |
-| [gundo.vim](#gundovim)                                    |   N  |      `<Leader>u`     | Open Gundo for show all undo                                                                                                            |
-| [youcompleteme](#youcompleteme)                           |   N  |        `<F2>`        | Load YouCompleteMe (disable at load because too heavy). Load also the (vim-snippets)[#vim-snippets] and [ultisnips](#ultisnips) plugin. |
-| [tagbar](#tagbar)                                         |   N  |        `<F3>`        | Open Tagbar for show all vars, functions, class...                                                                                      |
-| [vim-colors-solarized](#vim-colors-solarized)             |   N  |        `<F5>`        | Switch dark/ligh background                                                                                                             |
-| [rainbow](#rainbow)                                       |   N  | `<Leader><Leader>r`  | Toggle plugin Rainbow                                                                                                                   |
-| [HTML-AutoCloseTag](#HTML-AutoCloseTag)                   |   N  |     `<Leader>ac`     | Toggle plugin HTML-AutoCloseTag                                                                                                         |
-| [vim-indent-guides](#vim-indent-guides)                   |   N  |     `<Leader>ig`     | Toggle plugin vim-indent-guides                                                                                                         |
-| [vim-signify](#vim-signify)                               |   N  |     `<Leader>gg`     | Toggle plugin vim-signigy                                                                                                               |
-| [vim-signify](#vim-signify)                               |   N  |     `<Leader>gh`     | Toggle text highlighting                                                                                                                |
-| [vim-signify](#vim-signify)                               |   N  |     `<Leader>gj`     | Goto next diff                                                                                                                          |
-| [vim-signify](#vim-signify)                               |   N  |     `<leader>gk`     | Goto previous diff                                                                                                                      |
+| Plugin                                                    | Mode |           Keystrokes           | Description                                                                                                                             |
+|-----------------------------------------------------------|:----:|:------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Alias (builtin)                                           |   N  |           `<Leader>/`          | Toggle inlight search                                                                                                                   |
+| Alias (builtin)                                           |   N  |             `<Tab>`            | Next buffer                                                                                                                             |
+| Alias (builtin)                                           |   N  |            `<S-Tab>`           | Previous buffer                                                                                                                         |
+| Alias (builtin)                                           |   N  |             `<C-d>`            | Delete Buffer                                                                                                                           |
+| Alias (builtin)                                           |   N  |             `<F9>`             | Toggle wrap lines                                                                                                                       |
+| Alias (builtin)                                           |   N  | `<F10>` or `<Leader><Leader>l` | Toggle cursorline                                                                                                                       |
+| Alias (builtin)                                           |   N  | `<F11>` or `<Leader><Leader>n` | Toggle line number                                                                                                                      |
+| Alias (builtin)                                           |   N  |             `<F12>`            | Toggle paste mode                                                                                                                       |
+| Alias (builtin)                                           |   N  |            `<Space>`           | Toggle folding                                                                                                                          |
+| [ultisnips](#ultisnips) and [vim-nippets](#vim-snippets)) |   I  |             `<Tab>`            | Execute the snippet                                                                                                                     |
+| [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |             `<C-n>`            | Highlights the current word. Press more for select the same next word                                                                   |
+| [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |             `<C-x>`            | Skip the current word                                                                                                                   |
+| [matchit.zip](#matchit.zip)                               |   N  |               `%`              | Select next/previous bracket                                                                                                            |
+| [vim-easymotion](#vim-easymotion)                         |   N  |      `<Leader></Leader>s`      | Search word begin by...                                                                                                                 |
+| [vim-easymotion](#vim-easymotion)                         |   N  |      `<Leader></Leader>w`      | Print all word backward / forward                                                                                                       |
+| [wildfire.vim](#wildfirevim)                              |   N  |             `<CR>`             | Select text                                                                                                                             |
+| [nerdtree](#nerdtree)                                     |   N  |           `<Leader>e`          | Open NerdTree                                                                                                                           |
+| [ctrlp.vim](#ctrlpvim)                                    |   N  |             `<C-p>`            | Open ctrlp for search file                                                                                                              |
+| [gundo.vim](#gundovim)                                    |   N  |           `<Leader>u`          | Open Gundo for show all undo                                                                                                            |
+| [youcompleteme](#youcompleteme)                           |   N  |             `<F2>`             | Load YouCompleteMe (disable at load because too heavy). Load also the (vim-snippets)[#vim-snippets] and [ultisnips](#ultisnips) plugin. |
+| [tagbar](#tagbar)                                         |   N  |             `<F3>`             | Open Tagbar for show all vars, functions, class...                                                                                      |
+| [vim-colors-solarized](#vim-colors-solarized)             |   N  |             `<F5>`             | Switch dark/ligh background                                                                                                             |
+| [rainbow](#rainbow)                                       |   N  |      `<Leader><Leader>r`       | Toggle plugin Rainbow                                                                                                                   |
+| [HTML-AutoCloseTag](#HTML-AutoCloseTag)                   |   N  |          `<Leader>ac`          | Toggle plugin HTML-AutoCloseTag                                                                                                         |
+| [vim-indent-guides](#vim-indent-guides)                   |   N  |          `<Leader>ig`          | Toggle plugin vim-indent-guides                                                                                                         |
+| [vim-signify](#vim-signify)                               |   N  |          `<Leader>gg`          | Toggle plugin vim-signigy                                                                                                               |
+| [vim-signify](#vim-signify)                               |   N  |          `<Leader>gh`          | Toggle text highlighting                                                                                                                |
+| [vim-signify](#vim-signify)                               |   N  |          `<Leader>gj`          | Goto next diff                                                                                                                          |
+| [vim-signify](#vim-signify)                               |   N  |          `<leader>gk`          | Goto previous diff                                                                                                                      |
 
 
  * [vim-easy-align](#vim-easy-align) key mapping :
@@ -583,6 +584,10 @@ cd ~/.vim/bundle/YouCompleteMe
 ![GIF Demo](https://raw.github.com/SirVer/ultisnips/master/doc/demo.gif)
 
 
+Tips
+----
+Write `set undofile` in **.vimrc** file for have persistent undo.
+
 Troubleshooting
 ---------------
-Disable **cursorline** `:set nocursorline` if you have some lags.
+Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
