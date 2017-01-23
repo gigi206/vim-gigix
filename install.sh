@@ -52,7 +52,9 @@ verif_deps() {
 
 setup_neoBundle() {
     if [ ! -e ~/.vim/bundle/neobundle.vim ]; then
-        git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim &>/dev/null && success "NeoBundle installed successfully" || error "Problem with the NeoBundle installation !" "critical"
+        git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim &>/dev/null \
+            && success "NeoBundle installed successfully" \
+            || error "Problem with the NeoBundle installation !" "critical"
     fi
     msg "Now we installed plugins. This can take a long time..."
     sleep 10
@@ -72,8 +74,17 @@ configure_gnome-terminal() {
     )
 }
 
+install_YCM() {
+    [ ! -e ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ] \
+        && cd ~/.vim/bundle/YouCompleteMe \
+        && ./install.py
+}
+
 verif_deps
 get_ctags-exuberant
 get_vimrc
 setup_neoBundle
 configure_gnome-terminal
+install_YCM
+
+success "vim-gigix is installed :)"
