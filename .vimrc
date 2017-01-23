@@ -3,11 +3,6 @@
 """""""""""""
 " Author : Ghislain LE MEUR
 " https://github.com/gigi206/vim-gigix
-" Git must be installed pour install or updated modulesA
-" exuberant-ctags (+ cmake + g++ + python-dev => for compile) => if you wan to use youcompleteme (vim with +python os needed)
-" If you use vim with putty, you must install compatible font like ~.vim/bundle/fonts/DejaVuSansMono/*ttf in Window/Apperance :
-"   * Font Settings : font => 'DejaVu Sans Mono for powerline'
-"   * font quality : ClearType
 
 if !empty($VimPlugin)
     let g:MyPluginPath = fnamemodify(resolve(expand($VimPlugin)), ":p") . '/bundle'
@@ -418,12 +413,18 @@ endif
 
 " Functions
 function! DarkBackground()
+    if &bg != 'dark' && exists('$DESKTOP_SESSION') && $DESKTOP_SESSION == 'GNOME' &&  filereadable(g:MyPluginPath . "/gnome-terminal-colors-solarized/set_dark.sh")
+        call system('echo 2 |' . g:MyPluginPath . "/gnome-terminal-colors-solarized/set_dark.sh")
+    endif
     let g:airline_theme='luna'
     set bg=dark
     "highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
 endfunction
 
 function! LightBackground()
+    if &bg != 'light' && exists('$DESKTOP_SESSION') && $DESKTOP_SESSION == 'GNOME' &&  filereadable(g:MyPluginPath . "/gnome-terminal-colors-solarized/set_light.sh")
+        call system('echo 2 |' . g:MyPluginPath . "/gnome-terminal-colors-solarized/set_light.sh")
+    endif
     let g:airline_theme='lucius'
     set bg=light
     highlight link EasyMotionTarget ErrorMsg
