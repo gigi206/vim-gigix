@@ -22,7 +22,20 @@ error() {
 
 get_vimrc() {
     mkdir -p ~/.vim/bundle
-    curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/.vimrc &>/dev/null -L -o ~/.vimrc  && success "Sucessfully download .vimrc file" || error "Problem when downloading .vimrc file" "criticial"
+    curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/.vimrc &>/dev/null -s -L -o ~/.vimrc  && success "Sucessfully download .vimrc file" || error "Problem when downloading .vimrc file" "criticial"
+}
+
+get_ctags-exuberant() {
+    which ctags-exuberant &>/dev/null || echo -n "Do you want to install ctags-exuberant from vim-gigix ? (Y/N) " \
+        && read -n1 answer \
+        && [ "$answer" == 'Y'  ] && echo \
+        && (
+            [ ! -e ~/.vim/bin ] && mkdir -p ~/.vim/bin
+            curl https://github.com/gigi206/vim-gigix/raw/master/bin/ctags-exuberant -s -L -o ~/.vim/bin/ctags-exuberant \
+                && chmod +x ~/.vim/bin/ctags-exuberant \
+                && success "ctags-exuberant is installed" \
+                || error "failed to download ctags-exuberant"
+        )
 }
 
 verif_deps() {
@@ -30,11 +43,11 @@ verif_deps() {
     which git &>/dev/null && success "git is installed" || error "git is needed for the installation" "critical"
     which python &>/dev/null && success "python is installed" || error "Python is recommended for some modules"
     vim --version | egrep '\+python' &> /dev/null && success "VIM is compiled with python" || error "VIM is not compiled with python ! Some modules. Some modules will not work !"
-    which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
     which cmake &>/dev/null && success "cmake is installed" || error "cmake is recommended for compile some modules"
     which automake &>/dev/null && success "automake is installed" || error "automake is recommended for compile some modules"
     which gcc &>/dev/null && success "gcc is installed" || error "gcc is recommended for compile some modules"
     which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for compile some modules"
+    #which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
 }
 
 setup_neoBundle() {
@@ -60,6 +73,7 @@ configure_gnome-terminal() {
 }
 
 verif_deps
+get_ctags-exuberant
 get_vimrc
 setup_neoBundle
 configure_gnome-terminal

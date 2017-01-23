@@ -21,6 +21,8 @@ if !exists('g:MyPluginPath') || !isdirectory(g:MyPluginPath)
     endif
 endif
 
+let $PATH .= ':' . fnamemodify(g:MyPluginPath, ':h') . '/bin'
+
 if &compatible
   set nocompatible               " Be iMproved
 endif
