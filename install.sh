@@ -76,6 +76,10 @@ configure_gnome-terminal() {
 
 install_YCM() {
     [ ! -e ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ] \
+        && which cmake &>/dev/null \
+        && which automake &>/dev/null \
+        && which g++ &>/dev/null \
+        && which python &>/dev/null \
         && cd ~/.vim/bundle/YouCompleteMe \
         && ./install.py
 }
