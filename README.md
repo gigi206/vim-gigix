@@ -587,8 +587,10 @@ cd ~/.vim/bundle/YouCompleteMe
 
 Tips
 ----
-Write `set undofile` and `set undodir` in **.vimrc** file for have persistent undo.
+  * Write `set undofile` and `set undodir` in **.vimrc** file for have persistent undo
 
 Troubleshooting
 ---------------
-Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
+  * Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
+  * Run `:NeoBundleLog` to show last logs
+  * Run `:NeoBundleList` to show disabled plugins (line start with `X`)
