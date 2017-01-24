@@ -439,16 +439,26 @@ function! LightBackground()
 endfunction
 
 function! ToggleBackground()
+    if !isdirectory(expand("~/.vim/config"))
+        call mkdir(expand("~/.vim/config"), "p")
+    endif
+
     if &bg == 'dark'
+        call writefile(['light'], expand("~/.vim/config/solarized"))
         call LightBackground()
     else
+        call writefile(['dark'], expand("~/.vim/config/solarized"))
         call DarkBackground()
     endif
 endfunction
 " End functions
 
 if exists('g:colors_name') && g:colors_name == 'solarized'
-    call DarkBackground()
+    if filereadable(expand("~/.vim/config/solarized")) && readfile(expand("~/.vim/config/solarized"))[0] == 'light'
+        call LightBackground()
+    else
+        call DarkBackground()
+    endif
 endif
 
 " Use local vimrc if available {
