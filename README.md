@@ -74,6 +74,10 @@ curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -s -L
 
 Run `:NeoBundleLog` for show installation problems.
 
+For vim with `python` compatibility plugins, install :
+ * `vim-nox` on Debian
+ * `vim-enhanced` on Fedora
+
 Updates
 -------
 ```sh
@@ -598,9 +602,9 @@ cd ~/.vim/bundle/YouCompleteMe
 
 Tips
 ----
-  * Write `set undofile` and `set undodir` in **.vimrc** file for have persistent undo
+ * Write `set undofile` and `set undodir` in **.vimrc** file for have persistent undo
 
 Troubleshooting
 ---------------
-  * Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
-  * Run `:NeoBundleList` to show disabled plugins (line start with `X`)
+ * Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
+ * Run `:NeoBundleList` to show disabled plugins (line start with `X`)

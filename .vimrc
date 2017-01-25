@@ -407,13 +407,13 @@ endif
     endif
     "
 " }
-" auto-pairs{
+" auto-pairs {
     if isdirectory(g:MyPluginPath . "/auto-pairs")
         let g:AutoPairsShortcutToggle = '<Leader>ap'
     endif
 " }
 
-" Functions
+" Functions {
 function! DarkBackground()
     if &bg != 'dark' && exists('$DESKTOP_SESSION') && $DESKTOP_SESSION == 'GNOME' &&  filereadable(g:MyPluginPath . "/gnome-terminal-colors-solarized/set_dark.sh")
         call system('echo 2 |' . g:MyPluginPath . "/gnome-terminal-colors-solarized/set_dark.sh")
@@ -451,7 +451,7 @@ function! ToggleBackground()
         call DarkBackground()
     endif
 endfunction
-" End functions
+" }
 
 if exists('g:colors_name') && g:colors_name == 'solarized'
     if filereadable(expand("~/.vim/config/solarized")) && readfile(expand("~/.vim/config/solarized"))[0] == 'light'
