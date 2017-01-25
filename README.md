@@ -6,6 +6,7 @@ https://ecotrust-canada.github.io/markdown-toc/
 
 - [Presentation](#presentation)
 - [Installation](#installation)
+- [Updates](#updates)
 - [Learn VIM](#learn-vim)
 - [Key mapping](#key-mapping)
   * [Original VIM key mapping](#original-vim-key-mapping)
@@ -68,8 +69,18 @@ Inspired by [spf13-vim](http://vim.spf13.com/).
 Installation
 ------------
 ```sh
-curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -L -o - | bash
+curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -s -L -o - | bash
 ```
+
+Run `:NeoBundleLog` for show installation problems.
+
+Updates
+-------
+```sh
+curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/.vimrc -s -L -o ~/.vimrc && vim +NeoBundleUpdate +qall
+```
+
+Run `:NeoBundleUpdatesLog` for show update problems.
 
 Learn VIM
 ---------
@@ -327,7 +338,7 @@ Main key mapping (read officials documentations plugins for all key mapping) :
 | Alias (builtin)                                           |   N  | `<F11>` or `<Leader><Leader>n` | Toggle line number                                                                                                                      |
 | Alias (builtin)                                           |   N  |             `<F12>`            | Toggle paste mode                                                                                                                       |
 | Alias (builtin)                                           |   N  |            `<Space>`           | Toggle folding                                                                                                                          |
-| [ultisnips](#ultisnips) and [vim-nippets](#vim-snippets)) |   I  |             `<Tab>`            | Execute the snippet                                                                                                                     |
+| [ultisnips](#ultisnips) and [vim-nippets](#vim-snippets)  |   I  |             `<Tab>`            | Execute the snippet                                                                                                                     |
 | [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |             `<C-n>`            | Highlights the current word. Press more for select the same next word                                                                   |
 | [vim-multiple-cursors](#vim-multiple-cursors)             |   N  |             `<C-x>`            | Skip the current word                                                                                                                   |
 | [matchit.zip](#matchit.zip)                               |   N  |               `%`              | Select next/previous bracket                                                                                                            |
@@ -592,5 +603,4 @@ Tips
 Troubleshooting
 ---------------
   * Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
-  * Run `:NeoBundleLog` to show last logs
   * Run `:NeoBundleList` to show disabled plugins (line start with `X`)
