@@ -47,6 +47,7 @@ verif_deps() {
     which automake &>/dev/null && success "automake is installed" || error "automake is recommended for compile some modules"
     which gcc &>/dev/null && success "gcc is installed" || error "gcc is recommended for compile some modules"
     which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for compile some modules"
+    which python-config &>/dev/null && success "python-config is installed" || error "python-devel is recommended for compile some modules"
     #which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
 }
 
