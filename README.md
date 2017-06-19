@@ -78,6 +78,16 @@ For vim with `python` compatibility plugins, install :
  * `vim-nox` on Debian
  * `vim-enhanced` on Fedora
 
+For `python3` support :
+ - `vim` must be compiled with `python3` support `vim --version | grep +python3 --color`
+ - Install mandatory package `xz` and `python3` devel package (for exemple `python3` and `python3-dev` on Debian)
+ - In `~/.vimrc` file replace line begins by `NeoBundleLazy 'Valloric/YouCompleteMe'` by this one :
+ ```
+ NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python3 install.py --clang-completer'}, 'external_commands' : ['python3'], 'build_commands' : ['automake', 'cmake', 'g++', 'gcc', 'python3', 'xz'], 'disabled' : (!has('python3')), 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
+ ```
+ - Delete plugins `YouCompleteMe` : `rm -fr ~/.vim/bundle/YouCompleteMe`
+ - Reinstall `YouCompleteMe` plugin with `vim +NeoBundleUpdate +qall`
+
 Updates
 -------
 ```sh

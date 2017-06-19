@@ -41,13 +41,13 @@ get_ctags-exuberant() {
 verif_deps() {
     which curl &>/dev/null && success "curl is installed" || error "curl is needed for the installation of .vimrc file !" "critical"
     which git &>/dev/null && success "git is installed" || error "git is needed for the installation" "critical"
-    which python &>/dev/null && success "python is installed" || error "Python is recommended for some modules"
-    vim --version | egrep '\+python' &> /dev/null && success "VIM is compiled with python" || error "VIM is not compiled with python ! Some modules. Some modules will not work !"
+    which python3 &>/dev/null && success "python3 is installed" || error "Python3 is recommended for some modules"
+    vim --version | egrep '\+python3' &> /dev/null && success "VIM is compiled with python3" || error "VIM is not compiled with python3 ! Some modules. Some modules will not work !"
     which cmake &>/dev/null && success "cmake is installed" || error "cmake is recommended for compile some modules"
     which automake &>/dev/null && success "automake is installed" || error "automake is recommended for compile some modules"
     which gcc &>/dev/null && success "gcc is installed" || error "gcc is recommended for compile some modules"
     which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for compile some modules"
-    which python-config &>/dev/null && success "python-config is installed" || error "python-devel is recommended for compile some modules"
+    which python3-config &>/dev/null && success "python3-config is installed" || error "python3-devel is recommended for compile some modules"
     #which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
 }
 
