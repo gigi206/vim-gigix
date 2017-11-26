@@ -42,11 +42,15 @@ call neobundle#begin(g:MyPluginPath)
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
+"NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'morhetz/gruvbox'
+NeoBundle 'lifepillar/vim-solarized8'
 NeoBundle 'mmozuras/vim-cursor'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'vim-airline/vim-airline', {'depends' : 'vim-airline/vim-airline-themes'}
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'mhinz/vim-signify'
+NeoBundle 'tpope/vim-fugitive', {'external_commands' : ['git'], 'disabled' : (!executable('git'))}
 NeoBundle 'terryma/vim-multiple-cursors', {'autoload' : {'mappings' : ['<C-n>']}}
 NeoBundleLazy 'powerline/fonts', {'build' : {'linux' : 'bash install.sh'}}
 NeoBundleLazy 'vim-airline/vim-airline-themes'
@@ -57,10 +61,8 @@ NeoBundleLazy 'tpope/vim-surround', {'autoload' : {'mappings' : ['<Plug>Dsurroun
 NeoBundleLazy 'tpope/vim-repeat', {'autoload' : {'mappings' : ['.']}}
 NeoBundleLazy 'gcmt/wildfire.vim', {'autoload' : {'mappings' : ['<CR>']}}
 NeoBundleLazy 'scrooloose/nerdcommenter', {'autoload' : {'mappings' : ['<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs', '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu']}}
-NeoBundleLazy "scrooloose/syntastic", {'autoload' : {'filetypes': ['python', 'ruby', 'perl', 'php', 'sh', 'vim', 'c', 'cpp', 'css', 'dockerfile', 'html', 'xhtml', 'javascript', 'json', 'markdown','yaml', 'xml', 'zsh']}}
+NeoBundleLazy 'scrooloose/syntastic', {'autoload' : {'filetypes': ['python', 'ruby', 'perl', 'php', 'sh', 'vim', 'c', 'cpp', 'css', 'dockerfile', 'html', 'xhtml', 'javascript', 'json', 'markdown','yaml', 'xml', 'zsh']}}
 NeoBundleLazy 'scrooloose/nerdtree', {'autoload' : {'commands' : ['NERDTreeToggle','NERDTreeFind','NERDTree']}}
-NeoBundleLazy 'tpope/vim-fugitive', {'external_commands' : ['git'], 'disabled' : (!executable('git')), 'autoload' : {'commands' : ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff', 'Gblame', 'Git', 'Ggrep']}, 'depends' : 'mhinz/vim-signify'}
-NeoBundleLazy 'mhinz/vim-signify', {'autoload' : {'commands' : ['SignifyToggle']}}
 NeoBundleLazy 'ctrlpvim/ctrlp.vim', {'autoload' : {'mappings' : ['<C-p>']}}
 NeoBundleLazy 'luochen1990/rainbow', {'autoload' : {'filetypes': ['xml', 'xhtml', 'html', 'vim', 'php']}}
 NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload' : {'filetypes': ['html']}}
@@ -163,24 +165,30 @@ set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-if has('gui_running')
-    " Gui here
-else
-    if &term == 'xterm' || &term == 'screen'
-        set t_Co=256
+if has('termguicolors') && &term =~ '.*-256color'
+    set termguicolors
+
+    if exists('$TMUX')
+        "TMUX compatibility
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
+elseif &term =~ '.*-256color' && version < 800
+    set t_Co=256
 endif
 
-" vim-colors-solarized {
-    if filereadable(g:MyPluginPath . "/vim-colors-solarized/colors/solarized.vim")
-        let g:solarized_termcolors=256
-        let g:solarized_termtrans=1
+" vim-solarized8 {
+    if filereadable(g:MyPluginPath . "/vim-solarized8/colors/solarized8.vim")
+        "let g:solarized_termcolors=256
+        let g:solarized_termtrans=0
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
+        let g:solarized_diffmode="normal"
+        "let g:solarized_use16 = 1
+        colorscheme solarized8
         "set background=dark         " Assume a dark background
         "set background=light        " Assume a light background
-        colorscheme solarized
-        if exists('g:colors_name') && g:colors_name == 'solarized'
+        if exists('g:colors_name') && g:colors_name == 'solarized8'
             nnoremap <silent> <F5> :call ToggleBackground()<CR>
         endif
         "set cursorcolumn                " Highlight current column
@@ -313,6 +321,7 @@ endif
        nmap <leader>gk <plug>(signify-prev-hunk)
     endif
 " }
+
 " vim-indent_guides {
     if isdirectory(g:MyPluginPath . "/vim-indent-guides")
         let g:indent_guides_start_level = 2
@@ -415,18 +424,15 @@ endif
 
 " Functions {
 function! DarkBackground()
-    if &bg != 'dark' && exists('$DESKTOP_SESSION') && $DESKTOP_SESSION == 'GNOME' &&  filereadable(g:MyPluginPath . "/gnome-terminal-colors-solarized/set_dark.sh")
-        call system('echo 2 |' . g:MyPluginPath . "/gnome-terminal-colors-solarized/set_dark.sh")
-    endif
+    colorscheme solarized8
     let g:airline_theme='luna'
     set bg=dark
-    "highlight CursorLineNr term=bold ctermfg=244 gui=bold guifg=244
+    hi IndentGuidesOdd ctermfg=242 ctermbg=0 guifg=grey15 guibg=grey30
+    hi IndentGuidesEven ctermfg=0 ctermbg=242 guifg=grey30 guibg=grey15
 endfunction
 
 function! LightBackground()
-    if &bg != 'light' && exists('$DESKTOP_SESSION') && $DESKTOP_SESSION == 'GNOME' &&  filereadable(g:MyPluginPath . "/gnome-terminal-colors-solarized/set_light.sh")
-        call system('echo 2 |' . g:MyPluginPath . "/gnome-terminal-colors-solarized/set_light.sh")
-    endif
+    colorscheme gruvbox
     let g:airline_theme='lucius'
     set bg=light
     highlight link EasyMotionTarget ErrorMsg
@@ -435,7 +441,8 @@ function! LightBackground()
     "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
     "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
     "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
-    "autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd ctermfg=15 ctermbg=7 guifg=grey85 guibg=grey70
+    hi IndentGuidesOdd ctermfg=229 ctermbg=250 guifg=bg guibg=#d5c4a1
+    hi IndentGuidesEven ctermfg=229 ctermbg=223 guifg=bg guibg=#ebdbb2
 endfunction
 
 function! ToggleBackground()
@@ -453,7 +460,7 @@ function! ToggleBackground()
 endfunction
 " }
 
-if exists('g:colors_name') && g:colors_name == 'solarized'
+if exists('g:colors_name') && g:colors_name == 'solarized8'
     if filereadable(expand("~/.vim/config/solarized")) && readfile(expand("~/.vim/config/solarized"))[0] == 'light'
         call LightBackground()
     else

@@ -26,7 +26,8 @@ https://ecotrust-canada.github.io/markdown-toc/
   * [Plugin key mapping](#plugin-key-mapping)
 - [Modules](#modules)
   * [vim-cursor](#vim-cursor)
-  * [vim-colors-solarized](#vim-colors-solarized)
+  * [vim-solarized8](#vim-solarized8)
+  * [gruvbox](#gruvbox)
   * [vim-airline](#vim-airline)
   * [vim-airline-themes](#vim-airline-themes)
   * [vim-indent-guides](#vim-indent-guides)
@@ -364,7 +365,7 @@ Main key mapping (read officials documentations plugins for all key mapping) :
 | [gundo.vim](#gundovim)                                    |   N  |           `<Leader>u`          | Open Gundo for show all undo                                                                                                            |
 | [youcompleteme](#youcompleteme)                           |   N  |             `<F2>`             | Load YouCompleteMe (disable at load because too heavy). Load also the (vim-snippets)[#vim-snippets] and [ultisnips](#ultisnips) plugin. |
 | [tagbar](#tagbar)                                         |   N  |             `<F3>`             | Open Tagbar for show all vars, functions, classes...                                                                                    |
-| [vim-colors-solarized](#vim-colors-solarized)             |   N  |             `<F5>`             | Switch dark/ligh background                                                                                                             |
+| [vim-solarized8](#vim-solarized8) / [gruvbox](#gruvbox)   |   N  |             `<F5>`             | Switch dark/ligh background                                                                                                             |
 | [rainbow](#rainbow)                                       |   N  |      `<Leader><Leader>r`       | Toggle plugin Rainbow                                                                                                                   |
 | [HTML-AutoCloseTag](#HTML-AutoCloseTag)                   |   N  |          `<Leader>ac`          | Toggle plugin HTML-AutoCloseTag                                                                                                         |
 | [vim-indent-guides](#vim-indent-guides)                   |   N  |          `<Leader>ig`          | Toggle plugin vim-indent-guides                                                                                                         |
@@ -469,11 +470,22 @@ Modules
 [vim-cursor](https://github.com/mmozuras/vim-cursor) go to previous position when opening a vim buffer.
 
 
-### vim-colors-solarized
-[vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) is a vim theme.
-![solarized dark](https://github.com/altercation/solarized/raw/master/img/solarized-vim.png)
+### vim-solarized8
+[vim-solarized8](https://github.com/lifepillar/vim-solarized8) is the dark vim theme.
+![solarized8 dark](https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_dark_flat.png)
 
 If you use vim with **Putty**, you should install this [reg file](Putty/putty.reg) for compatibility colors.
+
+Use [Putty 0.71](https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.70.html) minimal release to have true color compatibility. At the time I wrote these lines, Putty 0.71 was not been released and you must download the [snapshot release](https://www.chiark.greenend.org.uk/~sgtatham/putty/snapshot.html) that contain the [true (24-bit) color patch](https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/true-colour.html).
+
+
+### gruvbox
+[gruvbox](https://github.com/morhetz/gruvbox) is the light vim theme.
+![gruvbox light](http://i.imgur.com/X75niEa.png)
+
+If you use vim with **Putty**, you should install this [reg file](Putty/putty.reg) for compatibility colors.
+
+Use [Putty 0.71](https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.70.html) minimal release to have true color compatibility. At the time I wrote these lines, Putty 0.71 was not been released and you must download the [snapshot release](https://www.chiark.greenend.org.uk/~sgtatham/putty/snapshot.html) that contain the [true (24-bit) color patch](https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/true-colour.html).
 
 
 ### vim-airline
