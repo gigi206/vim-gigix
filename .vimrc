@@ -30,11 +30,7 @@ endif
 let mapleader = ','
 
 " Required:
-"set runtimepath+=~/.vim/bundle/neobundle.vim/
 exe 'set runtimepath+=' . g:MyPluginPath . '/neobundle.vim/'
-
-" Required:
-"call neobundle#begin(expand('~/.vim/bundle'))
 call neobundle#begin(g:MyPluginPath)
 
 " Let NeoBundle manage NeoBundle
@@ -42,7 +38,6 @@ call neobundle#begin(g:MyPluginPath)
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
-"NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle 'lifepillar/vim-solarized8'
 NeoBundle 'mmozuras/vim-cursor'
@@ -70,8 +65,7 @@ NeoBundleLazy 'sjl/gundo.vim', {'external_commands' : ['python'], 'disabled' : (
 NeoBundleLazy 'majutsushi/tagbar', {'external_commands' : ['ctags-exuberant'], 'disabled' : (!executable('ctags-exuberant')), 'autoload' : {'commands' : ['TagbarToggle']}}
 NeoBundleLazy 'SirVer/ultisnips'
 NeoBundleLazy 'honza/vim-snippets'
-NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python install.py'}, 'external_commands' : ['python'], 'build_commands' : ['automake', 'cmake', 'g++', 'gcc', 'python'], 'disabled' : (!has('python')), 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
-NeoBundleLazy 'Anthony25/gnome-terminal-colors-solarized'
+NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python3 install.py'}, 'external_commands' : ['python3'], 'build_commands' : ['automake', 'cmake', 'g++', 'gcc', 'python3'], 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
 
 " You can specify revision/branch/tag.
 "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -84,8 +78,6 @@ NeoBundleLazy 'Anthony25/gnome-terminal-colors-solarized'
 
 " Required:
 call neobundle#end()
-
-" Required:
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
@@ -173,12 +165,12 @@ if has('termguicolors') && &term =~ '.*-256color'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
-elseif &term =~ '.*-256color' && version < 800
+else
     set t_Co=256
 endif
 
 " vim-solarized8 {
-    if filereadable(g:MyPluginPath . "/vim-solarized8/colors/solarized8.vim")
+    if isdirectory(g:MyPluginPath . "/vim-solarized8")
         "let g:solarized_termcolors=256
         let g:solarized_termtrans=0
         let g:solarized_contrast="normal"
@@ -201,14 +193,20 @@ endif
     endif
 " }
 
+" gruvbox {
+    if isdirectory(g:MyPluginPath . "/gruvbox")
+        let g:gruvbox_contrast_light='hard'
+    endif
+"}
+
 " vim-airline {
     if isdirectory(g:MyPluginPath . "/vim-airline")
         " Workaround for vim-airline with lazyredraw
         autocmd VimEnter * redrawstatus!
 
-    if has('statusline')
-        set laststatus=2
-    endif
+        if has('statusline')
+            set laststatus=2
+        endif
 
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#tabline#enabled = 1
@@ -416,6 +414,7 @@ endif
     endif
     "
 " }
+
 " auto-pairs {
     if isdirectory(g:MyPluginPath . "/auto-pairs")
         let g:AutoPairsShortcutToggle = '<Leader>ap'
@@ -423,53 +422,55 @@ endif
 " }
 
 " Functions {
-function! DarkBackground()
-    colorscheme solarized8
-    let g:airline_theme='luna'
-    set bg=dark
-    hi IndentGuidesOdd ctermfg=242 ctermbg=0 guifg=grey15 guibg=grey30
-    hi IndentGuidesEven ctermfg=0 ctermbg=242 guifg=grey30 guibg=grey15
-endfunction
+    function! DarkBackground()
+        colorscheme solarized8
+        let g:airline_theme='luna'
+        set bg=dark
+        hi IndentGuidesOdd ctermfg=242 ctermbg=0 guifg=grey15 guibg=grey30
+        hi IndentGuidesEven ctermfg=0 ctermbg=242 guifg=grey30 guibg=grey15
+    endfunction
 
-function! LightBackground()
-    colorscheme gruvbox
-    let g:airline_theme='lucius'
-    set bg=light
-    highlight link EasyMotionTarget ErrorMsg
-    highlight link EasyMotionTarget2First Search
-    highlight link EasyMotionTarget2Second Search
-    "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
-    "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
-    "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
-    hi IndentGuidesOdd ctermfg=229 ctermbg=250 guifg=bg guibg=#d5c4a1
-    hi IndentGuidesEven ctermfg=229 ctermbg=223 guifg=bg guibg=#ebdbb2
-endfunction
+    function! LightBackground()
+        colorscheme gruvbox
+        let g:airline_theme='lucius'
+        set bg=light
+        highlight link EasyMotionTarget ErrorMsg
+        highlight link EasyMotionTarget2First Search
+        highlight link EasyMotionTarget2Second Search
+        "highlight EasyMotionTarget ctermbg=none term=bold ctermfg=1
+        "highlight EasyMotionTarget2First ctermbg=none ctermfg=129
+        "highlight EasyMotionTarget2Second ctermbg=none ctermfg=129
+        hi IndentGuidesOdd ctermfg=229 ctermbg=250 guifg=bg guibg=#d5c4a1
+        hi IndentGuidesEven ctermfg=229 ctermbg=223 guifg=bg guibg=#ebdbb2
+    endfunction
 
-function! ToggleBackground()
-    if !isdirectory(expand("~/.vim/config"))
-        call mkdir(expand("~/.vim/config"), "p")
+    function! ToggleBackground()
+        if !isdirectory(expand("~/.vim/config"))
+            call mkdir(expand("~/.vim/config"), "p")
+        endif
+
+        if &bg == 'dark'
+            call writefile(['light'], expand("~/.vim/config/solarized"))
+            call LightBackground()
+        else
+            call writefile(['dark'], expand("~/.vim/config/solarized"))
+            call DarkBackground()
+        endif
+    endfunction
+    " }
+
+    if exists('g:colors_name') && g:colors_name == 'solarized8'
+        if filereadable(expand("~/.vim/config/solarized")) && readfile(expand("~/.vim/config/solarized"))[0] == 'light'
+            call LightBackground()
+        else
+            call DarkBackground()
+        endif
     endif
-
-    if &bg == 'dark'
-        call writefile(['light'], expand("~/.vim/config/solarized"))
-        call LightBackground()
-    else
-        call writefile(['dark'], expand("~/.vim/config/solarized"))
-        call DarkBackground()
-    endif
-endfunction
 " }
-
-if exists('g:colors_name') && g:colors_name == 'solarized8'
-    if filereadable(expand("~/.vim/config/solarized")) && readfile(expand("~/.vim/config/solarized"))[0] == 'light'
-        call LightBackground()
-    else
-        call DarkBackground()
-    endif
-endif
 
 " Use local vimrc if available {
     if filereadable(expand("~/.vimrc.local"))
         source ~/.vimrc.local
     endif
 " }
+
