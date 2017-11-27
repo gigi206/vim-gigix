@@ -476,7 +476,7 @@ Modules
 
 If you use vim with **Putty**, you should install this [reg file](Putty/putty.reg) for compatibility colors.
 
-Use [Putty 0.71](https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.70.html) minimal release to have true color compatibility. At the time I wrote these lines, Putty 0.71 was not been released and you must download the [snapshot release](https://www.chiark.greenend.org.uk/~sgtatham/putty/snapshot.html) that contain the [true (24-bit) color patch](https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/true-colour.html).
+Use [Putty 0.71](https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.71.html) minimal release to have true color compatibility. At the time I wrote these lines, Putty 0.71 was not been released and you must download the [snapshot release](https://www.chiark.greenend.org.uk/~sgtatham/putty/snapshot.html) that contain the [true (24-bit) color patch](https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/true-colour.html).
 
 
 ### gruvbox
