@@ -157,7 +157,7 @@ set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-if has('termguicolors') && &term =~ '.*-256color'
+if has('termguicolors') && (&term == 'screen-256color' || &term == 'tmux-256color' || &term == 'xterm-256color')
     set termguicolors
 
     if exists('$TMUX')
@@ -171,6 +171,10 @@ endif
 
 " vim-solarized8 {
     if isdirectory(g:MyPluginPath . "/vim-solarized8")
+        if &term != 'tmux-256color' && &term != 'xterm-256color'
+            let g:solarized_term_italics=0
+        endif
+
         "let g:solarized_termcolors=256
         let g:solarized_termtrans=0
         let g:solarized_contrast="normal"
@@ -195,6 +199,10 @@ endif
 
 " gruvbox {
     if isdirectory(g:MyPluginPath . "/gruvbox")
+        if &term != 'tmux-256color' && &term != 'xterm-256color'
+            let g:gruvbox_italic=0
+        endif
+
         let g:gruvbox_contrast_light='hard'
     endif
 "}
