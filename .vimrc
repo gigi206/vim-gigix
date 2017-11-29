@@ -43,10 +43,13 @@ NeoBundle 'lifepillar/vim-solarized8'
 NeoBundle 'mmozuras/vim-cursor'
 NeoBundle 'vim-airline/vim-airline', {'depends' : 'vim-airline/vim-airline-themes'}
 NeoBundle 'nathanaelkane/vim-indent-guides'
+"NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'mhinz/vim-signify'
+NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'tpope/vim-fugitive', {'external_commands' : ['git'], 'disabled' : (!executable('git'))}
 NeoBundle 'terryma/vim-multiple-cursors', {'autoload' : {'mappings' : ['<C-n>']}}
+NeoBundle 'mhinz/vim-startify'
 NeoBundleLazy 'powerline/fonts', {'build' : {'linux' : 'bash install.sh'}}
 NeoBundleLazy 'vim-airline/vim-airline-themes'
 NeoBundleLazy 'matchit.zip', {'autoload' : {'mappings' : ['%']}}
@@ -169,9 +172,25 @@ else
     set t_Co=256
 endif
 
+" vim-startify {
+    if isdirectory(g:MyPluginPath . "/vim-startify")
+        let g:startify_custom_header = [
+            \ ' ██╗   ██╗██╗███╗   ███╗       ██████╗ ██╗ ██████╗ ██╗██╗  ██╗',
+            \ ' ██║   ██║██║████╗ ████║      ██╔════╝ ██║██╔════╝ ██║╚██╗██╔╝',
+            \ ' ██║   ██║██║██╔████╔██║█████╗██║  ███╗██║██║  ███╗██║ ╚███╔╝ ',
+            \ ' ╚██╗ ██╔╝██║██║╚██╔╝██║╚════╝██║   ██║██║██║   ██║██║ ██╔██╗ ',
+            \ '  ╚████╔╝ ██║██║ ╚═╝ ██║      ╚██████╔╝██║╚██████╔╝██║██╔╝ ██╗',
+            \ '   ╚═══╝  ╚═╝╚═╝     ╚═╝       ╚═════╝ ╚═╝ ╚═════╝ ╚═╝╚═╝  ╚═╝',
+            \ ]
+        let g:startify_custom_footer = ['', 'Coded by Ghislain LE MEUR']
+    endif
+" }
+
 " vim-solarized8 {
     if isdirectory(g:MyPluginPath . "/vim-solarized8")
-        if &term != 'tmux-256color' && &term != 'xterm-256color'
+        if &term == 'tmux-256color' || &term == 'xterm-256color'
+            let g:solarized_term_italics=1
+        else
             let g:solarized_term_italics=0
         endif
 
@@ -199,7 +218,9 @@ endif
 
 " gruvbox {
     if isdirectory(g:MyPluginPath . "/gruvbox")
-        if &term != 'tmux-256color' && &term != 'xterm-256color'
+        if &term == 'tmux-256color' || &term == 'xterm-256color'
+            let g:gruvbox_italic=1
+        else
             let g:gruvbox_italic=0
         endif
 

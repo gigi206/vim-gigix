@@ -15,7 +15,7 @@ https://ecotrust-canada.github.io/markdown-toc/
       - [Change](#change)
       - [Delete](#delete)
       - [Select](#select)
-      - [Change mode](#change-mode)
+      - [Switch mode](#switch-mode)
       - [Move cursor](#move-cursor)
       - [Replace](#replace)
       - [Other](#other)
@@ -31,6 +31,8 @@ https://ecotrust-canada.github.io/markdown-toc/
   * [vim-airline](#vim-airline)
   * [vim-airline-themes](#vim-airline-themes)
   * [vim-indent-guides](#vim-indent-guides)
+  * [vim-startify](#vim-startify)
+  * [vim-signature](#vim-signature)
   * [auto-pairs](#auto-pairs)
   * [vim-multiple-cursors](#vim-multiple-cursors)
   * [matchit.zip](#matchitzip)
@@ -464,6 +466,35 @@ After have pressed `<Leader>aip` / `gaip` or selected text in visual mode and pr
 | <silent> <leader>gi |:Git add -p %<CR>                                                                                                                  |
 
 
+ * [vim-signature](#vim-signature) key mapping :
+
+| Keystroke    | Action                                                                                     |
+|--------------|--------------------------------------------------------------------------------------------|
+| m`x`         | Toggle mark **x** and display it in the leftmost column                                        |
+| dm`x`        | Remove mark called **x**                                                                       |
+| m,           | Place the next available mark                                                              |
+| m.           | If no mark on line, place the next available mark. Otherwise, remove (first) existing mark |
+| m-           | Delete all marks from the current line                                                     |
+| m`<space>`   | Delete all marks from the current buffer                                                   |
+| ]`           | Jump to next mark                                                                          |
+| [`           | Jump to prev mark                                                                          |
+| ]'           | Jump to start of next line containing a mark                                               |
+| ['           | Jump to start of prev line containing a mark                                               |
+| `]           | Jump by alphabetical order to next mark                                                    |
+| `[           | Jump by alphabetical order to prev mark                                                    |
+| ']           | Jump by alphabetical order to start of next line having a mark                             |
+| '[           | Jump by alphabetical order to start of prev line having a mark                             |
+| m/           | Open location list and display marks from current buffer                                   |
+| m[0-9]       | Toggle the corresponding marker !@#$%^&*()                                                  |
+| m`<S-[0-9]>` | Remove all markers of the same type                                                        |
+| ]-           | Jump to next line having a marker of the same type                                         |
+| [-           | Jump to prev line having a marker of the same type                                         |
+| ]=           | Jump to next line having a marker of any type                                              |
+| [=           | Jump to prev line having a marker of any type                                              |
+| m?           | Open location list and display markers from current buffer                                 |
+| `<BS>`       | Remove all markers                                                                         |
+
+
 Modules
 -------
 ### vim-cursor
@@ -496,13 +527,23 @@ If you use vim with **Putty**, you must install compatible fonts like [DejaVuSan
 
 
 ### vim-airline-themes
-[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) : themes for vim-airline.
+[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) are themes for vim-airline.
 ![vim-airline luna](https://f.cloud.github.com/assets/1803997/855867/e94e5428-f530-11e2-8097-fccaa7fdfa66.gif)
 
 
 ### vim-indent-guides
 [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) is a plugin for visually displaying indent levels in Vim.
 ![vim-ident-guides](http://i.imgur.com/7tMBl.png)
+
+
+### vim-startify
+[vim-startify](https://github.com/mhinz/vim-startify) is a plugin that provides a start screen.
+![vim-startify](https://raw.githubusercontent.com/mhinz/vim-startify/master/images/startify-menu.png)
+
+
+### vim-signature
+[vim-signature](https://github.com/kshenoy/vim-signature) display and navigate between marks.
+![vim-signature](https://raw.githubusercontent.com/kshenoy/vim-signature/images/screens/vim-signature_mark_jumps.gif)
 
 
 ### auto-pairs
@@ -630,3 +671,4 @@ Troubleshooting
 ---------------
  * Disable **cursorline** `:set nocursorline` (or press `F10` or press `<Leader><Leader>l`) if you have some lags.
  * Run `:NeoBundleList` to show disabled plugins (line start with `X`)
+
