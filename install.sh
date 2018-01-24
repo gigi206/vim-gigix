@@ -42,7 +42,7 @@ verif_deps() {
     which curl &>/dev/null && success "curl is installed" || error "curl is needed for the installation of .vimrc file !" "critical"
     which git &>/dev/null && success "git is installed" || error "git is needed for the installation" "critical"
     which python3 &>/dev/null && success "python3 is installed" || error "Python3 is recommended for some modules"
-    vim --version | egrep '\+python3' &> /dev/null && success "VIM is compiled with python3" || error "VIM is not compiled with python3 ! Some modules. Some modules will not work !"
+    vim --version | egrep '\+python3' &> /dev/null && success "VIM is compiled with python3" || error "VIM is not compiled with python3 ! Some modules will not work !"
     which cmake &>/dev/null && success "cmake is installed" || error "cmake is recommended for compile some modules"
     which automake &>/dev/null && success "automake is installed" || error "automake is recommended for compile some modules"
     which gcc &>/dev/null && success "gcc is installed" || error "gcc is recommended for compile some modules"
@@ -59,7 +59,7 @@ setup_neoBundle() {
     fi
     msg "Now we installed plugins. This can take a long time..."
     sleep 10
-    vim "+set nomore" "+NeoBundleInstall!" "+qall" && success "Updating / installing plugins using NeoBundle" || error "Problem when installation some modules !"
+    vim "+set nomore" "+NeoBundleInstall!" "+qall" && success "Updating / installing plugins using NeoBundle" || error "Problem with installing some modules !"
 }
 
 #configure_gnome-terminal() {
