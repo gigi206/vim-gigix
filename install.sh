@@ -58,8 +58,8 @@ setup_neoBundle() {
             || error "Problem with the NeoBundle installation !" "critical"
     fi
     msg "Now we installed plugins. This can take a long time..."
-    sleep 10
-    vim "+set nomore" "+NeoBundleInstall!" "+qall" && success "Updating / installing plugins using NeoBundle" || error "Problem with installing some modules !"
+    #vim "+set nomore" "+NeoBundleInstall!" "+qall" && success "Updating / installing plugins using NeoBundle" || error "Problem with installing some modules !"
+    ~/.vim/bundle/neobundle.vim/bin/neoinstall && success "Updating / installing plugins using NeoBundle" || error "Problem with installing some modules !"
 }
 
 #configure_gnome-terminal() {
