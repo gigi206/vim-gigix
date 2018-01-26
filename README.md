@@ -71,8 +71,24 @@ Inspired by [spf13-vim](http://vim.spf13.com/).
 
 Installation
 ------------
+### Docker for testing
+If you have Docker installed on your system you can build or installed the Docker image.
+
+#### Build yourself the Docker image
 ```sh
-curl https://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -s -L -o - | bash
+docker build -t vim-gigix http://raw.githubusercontent.com/gigi206/docker/master/Dockerfile/vim-gigix_tmux-gigix/Dockerfile
+docker run --rm -it --name vim-gigix -e TERM=xterm-256color vim-gigix tmux -2uc vim
+```
+
+#### Use the prebuild Docker image
+```sh
+docker pull gigi206/vim-gigix
+docker run --rm -it --name vim-gigix -e TERM=xterm-256color gigi206/vim-gigix tmux -2uc vim
+```
+
+### Linux
+```sh
+yes Y | bash <(curl http://raw.githubusercontent.com/gigi206/vim-gigix/master/install.sh -s -L -o -)
 ```
 
 Run `:NeoBundleLog` for show installation problems.
