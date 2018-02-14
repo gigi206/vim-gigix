@@ -30,64 +30,85 @@ endif
 let mapleader = ','
 
 " Required:
-exe 'set runtimepath+=' . g:MyPluginPath . '/neobundle.vim/'
-call neobundle#begin(g:MyPluginPath)
+exe 'set runtimepath+=' . g:MyPluginPath . '/repos/github.com/Shougo/dein.vim'
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+if dein#load_state(g:MyPluginPath)
+    let g:dein#types#git#clone_depth = 1
+    call dein#begin(g:MyPluginPath)
 
-" Add or remove your Bundles here:
-NeoBundle 'morhetz/gruvbox'
-NeoBundle 'lifepillar/vim-solarized8'
-NeoBundle 'mmozuras/vim-cursor'
-NeoBundle 'vim-airline/vim-airline', {'depends' : 'vim-airline/vim-airline-themes'}
-NeoBundle 'nathanaelkane/vim-indent-guides'
-"NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'mhinz/vim-signify'
-NeoBundle 'kshenoy/vim-signature'
-NeoBundle 'tpope/vim-fugitive', {'external_commands' : ['git'], 'disabled' : (!executable('git'))}
-NeoBundle 'terryma/vim-multiple-cursors', {'autoload' : {'mappings' : ['<C-n>']}}
-NeoBundle 'mhinz/vim-startify'
-NeoBundleLazy 'powerline/fonts', {'build' : {'linux' : 'bash install.sh'}}
-NeoBundleLazy 'vim-airline/vim-airline-themes'
-NeoBundleLazy 'matchit.zip', {'autoload' : {'mappings' : ['%']}}
-NeoBundleLazy 'junegunn/vim-easy-align', {'autoload' : {'mappings' : ['<Plug>(EasyAlign)']}}
-NeoBundleLazy 'easymotion/vim-easymotion', {'autoload' : {'mappings' : ['<Plug>(easymotion-bd-w)','<Leader><Leader>s']}}
-NeoBundleLazy 'tpope/vim-surround', {'autoload' : {'mappings' : ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround', '<Plug>Ysurround', '<Plug>YSurround', '<Plug>VSurround', '<Plug>VgSurround', '<Plug>Isurround', 'ISurround']}}
-NeoBundleLazy 'tpope/vim-repeat', {'autoload' : {'mappings' : ['.']}}
-NeoBundleLazy 'gcmt/wildfire.vim', {'autoload' : {'mappings' : ['<CR>']}}
-NeoBundleLazy 'scrooloose/nerdcommenter', {'autoload' : {'mappings' : ['<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs', '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu']}}
-NeoBundleLazy 'scrooloose/syntastic', {'autoload' : {'filetypes': ['python', 'ruby', 'perl', 'php', 'sh', 'vim', 'c', 'cpp', 'css', 'dockerfile', 'html', 'xhtml', 'javascript', 'json', 'markdown','yaml', 'xml', 'zsh']}}
-NeoBundleLazy 'scrooloose/nerdtree', {'autoload' : {'commands' : ['NERDTreeToggle','NERDTreeFind','NERDTree']}}
-NeoBundleLazy 'ctrlpvim/ctrlp.vim', {'autoload' : {'mappings' : ['<C-p>']}}
-NeoBundleLazy 'luochen1990/rainbow', {'autoload' : {'filetypes': ['xml', 'xhtml', 'html', 'vim', 'php']}}
-NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload' : {'filetypes': ['html']}}
-NeoBundleLazy 'sjl/gundo.vim', {'external_commands' : ['python'], 'disabled' : (!has('python')), 'autoload' : {'commands' : ['GundoToggle']}}
-NeoBundleLazy 'majutsushi/tagbar', {'external_commands' : ['ctags-exuberant'], 'disabled' : (!executable('ctags-exuberant')), 'autoload' : {'commands' : ['TagbarToggle']}}
-NeoBundleLazy 'SirVer/ultisnips'
-NeoBundleLazy 'honza/vim-snippets'
-NeoBundleLazy 'Valloric/YouCompleteMe', {'build' : {'linux' : 'YCM_CORES=1 python3 install.py'}, 'external_commands' : ['python3'], 'build_commands' : ['automake', 'cmake', 'g++', 'gcc', 'python3'], 'autoload' : {'mappings' : ['<F2>']}, 'depends' : ['SirVer/ultisnips', 'honza/vim-snippets']}
+    " Let dein manage dein
+    call dein#add('Shougo/dein.vim')
 
-" You can specify revision/branch/tag.
-"NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+    " Other plugins
+    call dein#add('morhetz/gruvbox')
+    call dein#add('lifepillar/vim-solarized8')
+    call dein#add('mmozuras/vim-cursor')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('nathanaelkane/vim-indent-guides')
+    "call dein#add( 'Yggdroot/indentLine')
+    call dein#add('jiangmiao/auto-pairs')
+    call dein#add('kshenoy/vim-signature')
+    call dein#add('mhinz/vim-startify')
+    call dein#add('terryma/vim-multiple-cursors', {'on_map' : ['<C-n>']})
+    call dein#add('powerline/fonts', {'lazy' : 1, 'build' : './install.sh'})
+    call dein#add('vim-scripts/matchit.zip', {'lazy' : 1, 'on_map' : ['%']})
+    call dein#add('junegunn/vim-easy-align', {'lazy' : 1, 'on_map' : ['<Plug>(EasyAlign)']})
+    call dein#add('easymotion/vim-easymotion', {'lazy' : 1, 'on_map' : ['<Plug>(easymotion-bd-w)','<Leader><Leader>s']})
+    call dein#add('tpope/vim-surround', {'lazy' : 1, 'on_map' : ['<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround', '<Plug>Ysurround', '<Plug>YSurround', '<Plug>VSurround', '<Plug>VgSurround', '<Plug>Isurround', 'ISurround']})
+    call dein#add('tpope/vim-repeat', {'lazy' : 1, 'on_map' : ['.']})
+    call dein#add('gcmt/wildfire.vim', {'lazy' : 1, 'on_map' : ['<CR>']})
+    call dein#add('scrooloose/nerdcommenter', {'lazy' : 1, 'on_map' : ['<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs', '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu']})
+    call dein#add('scrooloose/syntastic', {'lazy' : 1, 'on_ft': ['python', 'ruby', 'perl', 'php', 'sh', 'vim', 'c', 'cpp', 'css', 'dockerfile', 'html', 'xhtml', 'javascript', 'json', 'markdown','yaml', 'xml', 'zsh']})
+    call dein#add('scrooloose/nerdtree', {'lazy' : 1, 'on_cmd' : ['NERDTreeToggle','NERDTreeFind','NERDTree']})
+    call dein#add('ctrlpvim/ctrlp.vim', {'lazy' : 1, 'on_map' : ['<C-p>']})
+    call dein#add('luochen1990/rainbow', {'lazy' : 1, 'on_ft': ['xml', 'xhtml', 'html', 'vim', 'php']})
+    call dein#add('vim-scripts/HTML-AutoCloseTag', {'lazy' : 1, 'on_ft': ['html']})
 
-" Use local bundles config if available {
-    if filereadable(expand("~/.vimrc.bundles.local"))
-        source ~/.vimrc.bundles.local
+    if executable('git')
+        call dein#add('mhinz/vim-signify')
+        call dein#add('tpope/vim-fugitive')
     endif
-" }
 
-" Required:
-call neobundle#end()
+    if has('python') && executable('python')
+        call dein#add('sjl/gundo.vim', {'lazy' : 1, 'on_cmd' : ['GundoToggle']})
+    endif
+
+    if executable('ctags-exuberant')
+        call dein#add('majutsushi/tagbar', {'lazy' : 1, 'on_cmd' : ['TagbarToggle']})
+    endif
+
+    call dein#add('SirVer/ultisnips', {'lazy' : 0})
+    call dein#add('honza/vim-snippets', {'lazy' : 0})
+
+    if has('python3') && executable('python3')
+        call dein#add('Valloric/YouCompleteMe', {'lazy' : 1, 'build' : 'YCM_CORES=1 python3 install.py', 'on_map' : ['<F2>'], 'timeout' : 600})
+    elseif has('python') && executable('python')
+        call dein#add('Valloric/YouCompleteMe', {'lazy' : 1, 'build' : 'YCM_CORES=1 python install.py', 'on_map' : ['<F2>'], 'timeout' : 600})
+    endif
+
+    " Use local bundles config if available {
+        if filereadable(expand("~/.vimrc.bundles.local"))
+            source ~/.vimrc.bundles.local
+        endif
+    " }
+
+    " Required:
+    call dein#end()
+    call dein#save_state()
+    "call dein#recache_runtimepath()
+endif
+
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleCheck
+"NeoBundleCheck
 "NeoBundleCheckUpdate
 "NeoBundleDisable
+if dein#check_install()
+  call dein#install()
+endif
 
 set nobackup
 set history=1000     " Store lasts history
@@ -173,7 +194,7 @@ else
 endif
 
 " vim-startify {
-    if isdirectory(g:MyPluginPath . "/vim-startify")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/mhinz/vim-startify")
         let g:startify_custom_header = [
             \ ' ██╗   ██╗██╗███╗   ███╗       ██████╗ ██╗ ██████╗ ██╗██╗  ██╗',
             \ ' ██║   ██║██║████╗ ████║      ██╔════╝ ██║██╔════╝ ██║╚██╗██╔╝',
@@ -187,7 +208,7 @@ endif
 " }
 
 " vim-solarized8 {
-    if isdirectory(g:MyPluginPath . "/vim-solarized8")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/lifepillar/vim-solarized8")
         if &term == 'tmux-256color' || &term == 'xterm-256color'
             let g:solarized_term_italics=1
         else
@@ -217,7 +238,7 @@ endif
 " }
 
 " gruvbox {
-    if isdirectory(g:MyPluginPath . "/gruvbox")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/morhetz/gruvbox")
         if &term == 'tmux-256color' || &term == 'xterm-256color'
             let g:gruvbox_italic=1
         else
@@ -229,7 +250,7 @@ endif
 "}
 
 " vim-airline {
-    if isdirectory(g:MyPluginPath . "/vim-airline")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/vim-airline/vim-airline")
         " Workaround for vim-airline with lazyredraw
         autocmd VimEnter * redrawstatus!
 
@@ -248,19 +269,19 @@ endif
 " }
 
 " vim-easymotion {
-    if isdirectory(g:MyPluginPath . "/vim-easymotion")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/easymotion/vim-easymotion")
         nmap <Leader><Leader>w <Plug>(easymotion-bd-w)
     endif
 " }
 
 " matchit.zip {
-    if isdirectory(g:MyPluginPath . "/matchit.zip")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/vim-scripts/matchit.zip")
         let b:match_ignorecase = 1
     endif
 " }
 
 " vim-surround {
-    if isdirectory(g:MyPluginPath . "/vim-surround")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/tpope/vim-surround")
         nmap ds  <Plug>Dsurround
         nmap cs  <Plug>Csurround
         nmap cS  <Plug>CSurround
@@ -278,7 +299,7 @@ endif
 " }
 
 " Wildfire {
-    if isdirectory(g:MyPluginPath . "/wildfire.vim")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/gcmt/wildfire.vim")
         let g:wildfire_objects = {
             \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
             \ "html,xml" : ["at", "it"],
@@ -287,7 +308,7 @@ endif
 " }
 
 " vim-easy-align {
-    if isdirectory(g:MyPluginPath . "/vim-easy-align")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/junegunn/vim-easy-align")
         nmap <Leader>a <Plug>(EasyAlign)
         xmap <Leader>a <Plug>(EasyAlign)
         nmap ga <Plug>(EasyAlign)
@@ -296,21 +317,20 @@ endif
 " }
 
 " Gundo {
-    if isdirectory(g:MyPluginPath . "/gundo.vim")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/sjl/gundo.vim")
         nnoremap <Leader>u :GundoToggle<CR>
     endif
 " }
 
 " Rainbow {
-    if isdirectory(g:MyPluginPath . "/rainbow")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/luochen1990/rainbow")
         let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
         nnoremap <Leader><Leader>r :RainbowToggle<CR>
     endif
 " }
 
 " vim-fugitive {
-    if isdirectory(g:MyPluginPath . "/vim-fugitive")
-        let s:bundle = neobundle#get('vim-fugitive')
+    if isdirectory(g:MyPluginPath . "/repos/github.com/tpope/vim-fugitive")
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -322,16 +342,11 @@ endif
         nnoremap <silent> <leader>ge :Gedit<CR>
         " Mnemonic _i_nteractive
         nnoremap <silent> <leader>gi :Git add -p %<CR>
-
-        function! s:bundle.hooks.on_post_source(bundle)
-            doautoall fugitive BufNewFile
-        endfunction
-       unlet s:bundle
     endif
 " }
 
 " vim-signify {
-    if isdirectory(g:MyPluginPath . "/vim-signify")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/mhinz/vim-signify")
        "highlight SignColumn ctermfg=Black ctermbg=Black guifg=Black guibg=Black
        "highlight SignColumn ctermfg=239 ctermbg=235 guifg=239 guibg=235
        "highlight SignifySignAdd    cterm=bold ctermbg=22 ctermfg=22 guifg=22 guibg=255
@@ -350,7 +365,7 @@ endif
 " }
 
 " vim-indent_guides {
-    if isdirectory(g:MyPluginPath . "/vim-indent-guides")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/nathanaelkane/vim-indent-guides")
         let g:indent_guides_start_level = 2
         let g:indent_guides_guide_size = 1
         let g:indent_guides_enable_on_vim_startup = 1
@@ -358,7 +373,7 @@ endif
 " }
 
 " NerdTree {
-    if isdirectory(g:MyPluginPath . "/nerdtree")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/scrooloose/nerdtree")
         "map <C-e> <plug>NERDTreeTabsToggle<CR>
         "map <leader>e :NERDTreeFind<CR>
         map <leader>e :NERDTreeToggle<CR>
@@ -376,7 +391,7 @@ endif
 " }
 
 " YouCompleteMe {
-    if isdirectory(g:MyPluginPath . "/YouCompleteMe")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/Valloric/YouCompleteMe")
         "let g:ycm_use_ultisnips_completer = 0
         let g:ycm_key_invoke_completion = '<C-Space>'
 
@@ -422,14 +437,14 @@ endif
 " }
 
 " TagBar {
-    if isdirectory(g:MyPluginPath . "/tagbar")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/majutsushi/tagbar")
         nnoremap <silent> <F3> :TagbarToggle<CR>
         "nnoremap <silent> <leader>tt :TagbarToggle<CR>
     endif
 " }
 
 " syntastic {
-    if isdirectory(g:MyPluginPath . "/syntastic")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/scrooloose/syntastic")
         let g:syntastic_always_populate_loc_list = 1
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
@@ -438,14 +453,14 @@ endif
 " }
 
 " HTML-AutoCloseTag {
-    if isdirectory(g:MyPluginPath . "/HTML-AutoCloseTag")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/vim-scripts/HTML-AutoCloseTag")
         nmap <Leader>ac <Plug>ToggleAutoCloseMappings
     endif
     "
 " }
 
 " auto-pairs {
-    if isdirectory(g:MyPluginPath . "/auto-pairs")
+    if isdirectory(g:MyPluginPath . "/repos/github.com/jiangmiao/auto-pairs")
         let g:AutoPairsShortcutToggle = '<Leader>ap'
     endif
 " }

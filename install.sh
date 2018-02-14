@@ -49,48 +49,22 @@ verif_deps() {
     which gcc &>/dev/null && success "gcc is installed" || error "gcc is recommended for compile some modules"
     which g++ &>/dev/null && success "g++ is installed" || error "g++ is recommended for compile some modules"
     which python3-config &>/dev/null && success "python3-config is installed" || error "python3-devel is recommended for compile some modules"
-    #which ctags-exuberant &>/dev/null && success "ctags-exuberant is installed" || error "ctags-exuberant is recommended for some modules"
 }
 
-setup_neoBundle() {
-    if [ ! -e ~/.vim/bundle/neobundle.vim ]; then
-        git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim &>/dev/null \
-            && success "NeoBundle is installed" \
-            || error "Problem with the NeoBundle installation !" "critical"
+setup_Dein() {
+    if [ ! -e ~/.vim/bundle/repos/github.com/Shougo/dein.vim ]; then
+        msg "Installing Dein..."
+        sh <(curl -s https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh) .vim/bundle > /dev/null \
+            && success "Dein is installed" \
+            || error "Problem with the Dein installation !" "critical"
     fi
-    msg "Now we installed plugins. This can take a long time..."
-    #vim "+set nomore" "+NeoBundleInstall!" "+qall" && success "Updating / installing plugins using NeoBundle" || error "Problem with installing some modules !"
-    ~/.vim/bundle/neobundle.vim/bin/neoinstall && success "Updating / installing plugins using NeoBundle" || error "Problem with installing some modules !"
-}
-
-#configure_gnome-terminal() {
-#    which dconf &>/dev/null && (
-#        #profiles_uuid=`dconf list /org/gnome/terminal/legacy/profiles:/ | egrep '^:' | sed 's@/@@g'`
-#        default_profile_uuid=`dconf read /org/gnome/terminal/legacy/profiles:/default | sed "s@'@@g"`
-#        default_profile_name=`dconf read /org/gnome/terminal/legacy/profiles:/:${default_profile_uuid}/visible-name  | sed "s@'@@g"`
-#        dconf write /org/gnome/terminal/legacy/profiles:/:${default_profile_uuid}/use-system-font false
-#        dconf write /org/gnome/terminal/legacy/profiles:/:${default_profile_uuid}/font "'Roboto Mono for Powerline 12'"
-#
-#        ~/.vim/bundle/gnome-terminal-colors-solarized/install.sh --skip-dircolors -s dark -p $default_profile_name
-#        success "gnome-terminal (${default_profile_name} profile) is configured"
-#    )
-#}
-
-install_YCM() {
-    [ ! -e ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ] \
-        && which cmake &>/dev/null \
-        && which automake &>/dev/null \
-        && which g++ &>/dev/null \
-        && which python &>/dev/null \
-        && cd ~/.vim/bundle/YouCompleteMe \
-        && ./install.py
+    msg "Now we install plugins. This can take a long time..."
+    vim -c "try | call dein#update() | call dein#recache_runtimepath() | finally | qall! | endtry" -N -u .vimrc -U NONE -i NONE -V1 -e -s && success "Installing plugins using Dein" || error "Problem with installing some modules !"
 }
 
 verif_deps
 get_ctags-exuberant
 get_vimrc
-setup_neoBundle
-#configure_gnome-terminal
-install_YCM
+setup_Dein
 
 success "vim-gigix is installed :)"
