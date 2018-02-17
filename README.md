@@ -78,14 +78,14 @@ If you have Docker installed on your system you can build or installed the Docke
 #### Build yourself the Docker image
 ```sh
 docker build -t vim-gigix http://raw.githubusercontent.com/gigi206/docker/master/Dockerfile/vim-gigix_tmux-gigix/Dockerfile
-docker run --rm -it --name vim-gigix -e TERM=xterm-256color vim-gigix tmux -2uc vim
+docker run --rm -it --name vim-gigix -e TERM=xterm-256color vim-gigix tmux -2u new -s vim-gigix 'vim'
 ```
 
 
 #### Use the prebuild Docker image
 ```sh
 docker pull gigi206/vim-gigix
-docker run --rm -it --name vim-gigix -e TERM=xterm-256color gigi206/vim-gigix tmux -2uc vim
+docker run --rm -it --name vim-gigix -e TERM=xterm-256color gigi206/vim-gigix tmux -2u new -s vim-gigix 'vim'
 ```
 
 
