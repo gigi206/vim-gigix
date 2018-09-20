@@ -54,12 +54,12 @@ verif_deps() {
 setup_Dein() {
     if [ ! -e ~/.vim/bundle/repos/github.com/Shougo/dein.vim ]; then
         msg "Installing Dein..."
-        sh <(curl -s https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh) .vim/bundle > /dev/null \
+        sh <(curl -s https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh) ~/.vim/bundle > /dev/null \
             && success "Dein is installed" \
             || error "Problem with the Dein installation !" "critical"
     fi
     msg "Now we install plugins. This can take a long time..."
-    vim -c "try | call dein#update() | call dein#recache_runtimepath() | finally | qall! | endtry" -N -u .vimrc -U NONE -i NONE -V1 -e -s && success "Installing plugins using Dein" || error "Problem with installing some modules !"
+    vim -c "try | call dein#update() | call dein#recache_runtimepath() | finally | qall! | endtry" -N -u ~/.vimrc -U NONE -i NONE -V1 -e -s && success "Installing plugins using Dein" || error "Problem with installing some modules !"
 }
 
 verif_deps
