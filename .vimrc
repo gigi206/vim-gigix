@@ -4,6 +4,8 @@
 " Author : Ghislain LE MEUR
 " https://github.com/gigi206/vim-gigix
 
+set shell=/bin/sh
+
 if !empty($VimPlugin)
     let g:MyPluginPath = fnamemodify(resolve(expand($VimPlugin)), ":p") . '/bundle'
 endif
@@ -156,7 +158,6 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 "set matchpairs+=<:>             " Match, to be used with %
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
-set shell=/bin/sh
 
 scriptencoding utf-8
 "setglobal fileencoding=utf-8
